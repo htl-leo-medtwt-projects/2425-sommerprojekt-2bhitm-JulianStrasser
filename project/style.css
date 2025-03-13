@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'SquarePixel22';
+    src: url('font/SquarePixel22.ttf');
+}
+
+@font-face {
+    font-family: 'PressStart2P';
+    src: url('font/PressStart2P.ttf');
+}
+
+body, html {
+    margin: 0;
+}
+
+h1 {
+    font-family: 'SquarePixel22';
+    font-size: 64;
+    text-align: center;
+    background: linear-gradient( #FFD700, #9C9052);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+#header {
+    width: 100%;
+    background: linear-gradient( #110E69, #130F75, #211BCF);
+    position: absolute;
+}
+
+.button {
+    background-color: #110E69;
+    font-family: 'PressStart2P';
+    position: relative;
+    top: 4cm;
+    text-align: center;
+    color: #FFD700;
+    width: 324px;
+    height: 73px;
+}
+
+.menu {
+    left: 13cm;
+}
+
