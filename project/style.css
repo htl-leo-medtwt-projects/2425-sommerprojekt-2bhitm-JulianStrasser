@@ -8,8 +8,17 @@
     src: url('font/PressStart2P.ttf');
 }
 
+* {
+    user-select: none;
+}
+
 body, html {
     margin: 0;
+}
+
+body {
+    background-image: url('img/background.jpg');
+    background-size: cover;
 }
 
 h1 {
@@ -26,6 +35,7 @@ h1 {
     width: 100%;
     background: linear-gradient( #110E69, #130F75, #211BCF);
     position: absolute;
+    top: 0;
 }
 
 .button {
@@ -35,11 +45,19 @@ h1 {
     top: 4cm;
     text-align: center;
     color: #FFD700;
-    width: 324px;
-    height: 73px;
+    width: 124px;
+    height: 23px;
+    padding: 15px;
+    left: 18cm;
+    border: solid 3px #FFD700;
+    margin-top: 5mm;
 }
 
-.menu {
-    left: 13cm;
+.button:hover {
+    background-color: white;
+    color: #110E69;
+    cursor: pointer;
+    border-color: #110E69;
 }
+
 
