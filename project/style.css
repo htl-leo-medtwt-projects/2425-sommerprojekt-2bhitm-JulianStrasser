@@ -31,6 +31,13 @@ h1 {
 
 }
 
+p {
+    font-family: 'PressStart2P';
+    font-size: 24;
+    text-align: center;
+    color: #FFD700;
+}
+
 #header {
     width: 100%;
     background: linear-gradient( #110E69, #130F75, #211BCF);
@@ -39,13 +46,49 @@ h1 {
 }
 
 .button {
+    padding: 1em 2em;
+    border: none;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #211BCF;
+    transition: all 1s;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+
+  }
+  
+.button:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+  }
+  
+.button::before {
+
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #211BCF;
+    z-index: -1;
+    transition: width 1000ms;
+  }
+  
+.button:hover::before {
+    width: 250%;
+  }
+
+.button {
     background-color: #110E69;
     font-family: 'PressStart2P';
     position: relative;
     top: 4cm;
     text-align: center;
     color: #FFD700;
-    width: 124px;
+    width: 144px;
     height: 23px;
     padding: 15px;
     left: 18cm;
@@ -58,6 +101,7 @@ h1 {
     color: #110E69;
     cursor: pointer;
     border-color: #110E69;
+    
 }
 
 .textBox {
@@ -75,4 +119,32 @@ h1 {
     margin-top: 5mm;
 }
 
+.settOp {
+    display: flex;
+    position: relative;
+    left: 10px;
+    margin-bottom: 10px;
+}
+
+.arrowLeft {
+    width: 150px;
+}
+
+.arrowLeft:hover {
+    cursor: pointer;
+
+}
+
+.arrowRight {
+    width: 150px;
+}
+
+.settingsSelection {
+    display: flex;
+    position: relative;
+    top: 3cm;
+}
+
+#settings {
+}
 
