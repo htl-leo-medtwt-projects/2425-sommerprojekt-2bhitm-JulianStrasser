@@ -60,4 +60,19 @@ h1 {
     border-color: #110E69;
 }
 
+.textBox {
+    background-color: #110E69;
+    font-family: 'PressStart2P';
+    position: relative;
+    top: 4cm;
+    text-align: center;
+    color: #FFD700;
+    width: 124px;
+    height: 23px;
+    padding: 15px;
+    left: 18cm;
+    border: solid 3px #FFD700;
+    margin-top: 5mm;
+}
+
 
