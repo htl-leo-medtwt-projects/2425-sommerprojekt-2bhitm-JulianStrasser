@@ -111,7 +111,7 @@ p {
     top: 4cm;
     text-align: center;
     color: #FFD700;
-    width: 124px;
+    width: 158px;
     height: 23px;
     padding: 15px;
     left: 18cm;
@@ -128,23 +128,34 @@ p {
 
 .arrowLeft {
     width: 150px;
+    background-image: url('img/arrowLeft.png');
 }
 
 .arrowLeft:hover {
-    cursor: pointer;
+ 
 
 }
 
 .arrowRight {
     width: 150px;
+    background-image: url('img/arrowRight.png');
 }
 
 .settingsSelection {
     display: flex;
     position: relative;
-    top: 3cm;
+    top: 3.5cm;
+    left: 25cm;
+}
+
+.settingsSelection p {
+    position: relative;
+    top: 1cm;
 }
 
 #settings {
+    position: relative;
+    right: 8cm;
+
 }
 

@@ -17,9 +17,9 @@ function printSettings() {
             <div class="textBox">Language</div>
 
             <div class="settingsSelection">
-                <img class="arrowLeft" src="img/arrowLeft.png" class="arrow">
+                <div class="arrowLeft" class="arrow"></div>
                 <p>English</p>
-                <img class="arrowRight" src="img/arrowRight.png" class="arrow">
+                <div class="arrowRight" class="arrow"></div>
             </div>
             
         </div>
@@ -28,9 +28,9 @@ function printSettings() {
             <div class="textBox">Fullscreen</div>
 
             <div class="settingsSelection">
-                <img class="arrowLeft" src="img/arrowLeft.png" class="arrow">
+                <div class="arrowLeft" class="arrow"></div>
                 <p>Off</p>
-                <img class="arrowRight" src="img/arrowRight.png" class="arrow">
+                <div class="arrowRight" class="arrow"></div>
             </div>
             
         </div>
@@ -39,9 +39,9 @@ function printSettings() {
             <div class="textBox">Language</div>
 
             <div class="settingsSelection">
-                <img class="arrowLeft" src="img/arrowLeft.png" class="arrow">
+                <div class="arrowLeft" class="arrow"></div>
                 <p>English</p>
-                <img class="arrowRight" src="img/arrowRight.png" class="arrow">
+                <div class="arrowRight" class="arrow"></div>
             </div>
             
         </div>
