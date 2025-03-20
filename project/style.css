@@ -8,6 +8,12 @@
     src: url('font/PressStart2P.ttf');
 }
 
+:root {
+    --main-color: #FFD700;
+    --secondary-color: #110E69;
+    --third-color: #211BCF;
+}
+
 * {
     user-select: none;
 }
@@ -117,6 +123,7 @@ p {
     left: 18cm;
     border: solid 3px #FFD700;
     margin-top: 5mm;
+    margin-bottom: 40px;
 }
 
 .settOp {
@@ -127,35 +134,55 @@ p {
 }
 
 .arrowLeft {
-    width: 150px;
+    width: 100px;
+    height: 100px;
     background-image: url('img/arrowLeft.png');
+    background-size: cover;
 }
 
 .arrowLeft:hover {
- 
-
+    cursor: pointer;
+    background-image: url("img/arrowLeft_Blue.png");
 }
 
 .arrowRight {
-    width: 150px;
+    width: 100px;
+    height: 100px;
     background-image: url('img/arrowRight.png');
+    background-size: cover;
+    bottom: 5px;
+    position: relative;
 }
 
-.settingsSelection {
-    display: flex;
-    position: relative;
-    top: 3.5cm;
-    left: 25cm;
-}
-
-.settingsSelection p {
-    position: relative;
-    top: 1cm;
+.arrowRight:hover {
+    cursor: pointer;
+    background-image: url("img/arrowRight_Blue.png");
 }
 
 #settings {
-    position: relative;
     right: 8cm;
+    position: relative;
+    bottom: 4.25cm;
+}
 
+#settingsHeadlines {
+    right: 7cm;
+    position: relative;
+}
+
+.settOp p{
+    position: relative;
+    top: 0.5cm;
+}
+
+.settOp {
+    margin-bottom: 5px;
+    position: relative;
+    left: 25cm;
+}
+
+#backbutton {
+    width: 300px;
+    height: 300px;
 }
 
