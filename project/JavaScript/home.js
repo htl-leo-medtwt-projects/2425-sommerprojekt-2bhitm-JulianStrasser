@@ -1,6 +1,6 @@
 let outputHome = document.getElementById("outputHome");
 let backButtonHome = `
-    <div id="backButton" onclick="printHome()"></div>
+    <div class="backButton" onclick="printHome()">d</div>
 `;
 let home = `
     <div class="button" onclick="printCharacterSelection()">Start</div>
@@ -51,12 +51,19 @@ let about = `
 
         <ul>
             <li>Omni-Man (Invincible)</li>
+            <br>
             <li>Son Goku (Dragon Ball Z)</li>
+            <br>
             <li>Doomslayer (Doom)</li>
+            <br>
             <li>Darth Vader (Star Wars)</li>
+            <br>
             <li>Darkseid (DC)</li>
+            <br>
             <li>Kratos (God Of War)</li>
+            <br>
             <li>Matzgo (2BHITM)</li>
+            <br>
             <li>Clemens (2BHITM)</li>
         </ul>
 </div>

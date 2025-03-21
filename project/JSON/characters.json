@@ -1,17 +1,48 @@
 {
     "characters": [
         {
-            "name": "omniman",
-            "health": 1000000,
+            "name": "Omni-Man",
+            "health": 750000,
+            "quote": "You don't seem to understand. Earth isn't yours to conquer...",
             "attacks": []
         },
         {
-            "name": "omniman",
-            "health": 1000000,
+            "name": "Son Goku",
+            "health": 950000,
+            "quote": "I am the hope of the universe.",
             "attacks": []
+        },
+        {
+            "name": "Doom Slayer",
+            "health": 850000,
+            "quote": "No.",
+            "attacks": []
+        },
+        {
+            "name": "Darth Vader",
+            "health": 300000,
+            "attacks": []
+        },
+        {
+            "name": "Darkseid",
+            "health": 1000000,
+            "quote": "I will send you to a hell without exit or end.",
+            "attacks": []
+        },
+        {
+            "name": "Kratos",
+            "health": 900000,
+            "quote": "Death Can Have Me When It Earns Me."
+        },
+        {
+            "name": "Matzgo",
+            "health": 1000000,
+            "quote": "Du Kodenhobold"
+        },
+        {
+            "name": "Clemens",
+            "health": 1000000,
+            "qoute":
         }
-
-
-        ]
-            
+        ]            
 }
