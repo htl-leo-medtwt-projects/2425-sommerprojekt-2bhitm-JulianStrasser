@@ -1,6 +1,6 @@
 let outputHome = document.getElementById("outputHome");
 let backButtonHome = `
-    <div id="backButton" class="arrowLeft"></div>
+    <div id="backButton" onclick="printHome()"></div>
 `;
 let home = `
     <div class="button" onclick="printCharacterSelection()">Start</div>
@@ -39,6 +39,28 @@ let settings = `
    </div>
 </div>
 `;
+let about = `
+<div class="infoBox">
+        <p>
+            Fiction Battles is a game inspired by games
+            like Super Smash Bros or Mortal Combat. The
+            goal is to fight 1v1 against another person
+            until one runs out of Health Points (HP). The
+            characters planned so far are listed below:
+        </p>
+
+        <ul>
+            <li>Omni-Man (Invincible)</li>
+            <li>Son Goku (Dragon Ball Z)</li>
+            <li>Doomslayer (Doom)</li>
+            <li>Darth Vader (Star Wars)</li>
+            <li>Darkseid (DC)</li>
+            <li>Kratos (God Of War)</li>
+            <li>Matzgo (2BHITM)</li>
+            <li>Clemens (2BHITM)</li>
+        </ul>
+</div>
+`;
 
 disableScrolling();
 
@@ -56,5 +78,10 @@ function printHome() {
 
 function printSettings() {
     outputHome.innerHTML = settings;
+    outputHome.innerHTML += backButtonHome;
+}
+
+function printAbout() {
+    outputHome.innerHTML = about;
     outputHome.innerHTML += backButtonHome;
 }

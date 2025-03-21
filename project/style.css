@@ -12,6 +12,9 @@
     --main-color: #FFD700;
     --secondary-color: #110E69;
     --third-color: #211BCF;
+    --headline-font: 'SquarePixel22';
+    --text-font: 'PressStart2P';
+    --border: 3px solid #FFD700;
 }
 
 * {
@@ -42,6 +45,11 @@ p {
     font-size: 24;
     text-align: center;
     color: #FFD700;
+}
+
+ul {
+    color: var(--main-color);
+    font-family: var(--text-font);
 }
 
 #header {
@@ -184,5 +192,26 @@ p {
 #backbutton {
     width: 300px;
     height: 300px;
+    position: relative;
+    bottom: 500px;
+    left: 500px;
+    background-image: url('img/backButton.png');
+}
+
+#backbutton:hover {
+    cursor: pointer;
+    background-image: url('img/backButton_Blue.png');
+}
+
+.infoBox {
+    width: 500px;
+    position: relative;
+    top: 4cm;
+    font-family: var(--text-font);
+    background-color: var(--secondary-color);
+    margin-left: auto;
+    margin-right: auto;
+    border: var(--border);
+    text-align: left;
 }
 
