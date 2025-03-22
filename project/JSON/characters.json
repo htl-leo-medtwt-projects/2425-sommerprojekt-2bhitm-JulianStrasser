@@ -21,6 +21,7 @@
         {
             "name": "Darth Vader",
             "health": 300000,
+            "quote": "Anakin Is Gone. I Am What Remains.",
             "attacks": []
         },
         {
@@ -32,17 +33,17 @@
         {
             "name": "Kratos",
             "health": 900000,
-            "quote": "Death Can Have Me When It Earns Me."
+            "quote": "Death can have me when it earns me."
         },
         {
             "name": "Matzgo",
             "health": 1000000,
-            "quote": "Du Kodenhobold"
+            "quote": "Du hast Ligma."
         },
         {
             "name": "Clemens",
             "health": 1000000,
-            "qoute":
+            "qoute": "Ich esse keine Kinder, ich sperre sie nur ein."
         }
         ]            
 }

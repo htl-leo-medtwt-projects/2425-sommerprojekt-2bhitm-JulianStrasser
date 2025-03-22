@@ -14,7 +14,7 @@
     --third-color: #211BCF;
     --headline-font: 'SquarePixel22';
     --text-font: 'PressStart2P';
-    --border: 3px solid #FFD700;
+    --border: 4px solid #FFD700;
 }
 
 * {
@@ -60,63 +60,28 @@ ul {
 }
 
 .button {
-    padding: 1em 2em;
-    border: none;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: var(--third-color);
-    transition: all 1s;
-    font-size: 15px;
-    position: relative;
-    overflow: hidden;
-
-  }
-  
-.button:hover {
-    color: #ffffff;
-    transform: scale(1.1);
-  }
-  
-.button::before {
-
-    content: "";
-    position: absolute;
-    left: -50px;
-    top: 0;
-    width: 0;
-    height: 100%;
-    background-color: var(--third-color);
-    z-index: -1;
-    transition: width 1000ms;
-  }
-  
-.button:hover::before {
-    width: 250%;
-  }
-
-.button {
     background-color: var(--secondary-color);
     font-family: 'PressStart2P';
     position: relative;
     top: 4cm;
     text-align: center;
-    color: var(--secondary-color);
     width: 144px;
     height: 23px;
     padding: 15px;
     left: 18cm;
     border: var(--border);
     margin-top: 5mm;
+    transition: 1s;
+    color: var(--main-color);
+    border: var(--border);
 }
 
 .button:hover {
-    background-color: white;
-    color: var(--secondary-color);
+    color: #ffffff;
+    transform: scale(1.1);
     cursor: pointer;
-    border-color: var(--secondary-color);
-    
-}
+    background-color: var(--third-color);
+  }
 
 .textBox {
     background-color: var(--secondary-color);
@@ -167,7 +132,7 @@ ul {
     background-image: url("img/arrowRight_Blue.png");
 }
 
-#settings {
+.settings {
     right: 8cm;
     position: relative;
     bottom: 4.25cm;
@@ -190,12 +155,10 @@ ul {
 }
 
 .backbutton {
-    width: 300px;
-    height: 300px;
-    position: relative;
-    bottom: 500px;
-    left: 500px;
-    background-image: url('img/backButton.png');
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 8;
 }
 
 .backbutton:hover {
@@ -206,12 +169,10 @@ ul {
 .infoBox {
     width: 500px;
     position: relative;
-    top: 4cm;
+    top: 3cm;
+    left: 14cm;
     font-family: var(--text-font);
     background-color: var(--secondary-color);
-    margin-left: auto;
-    margin-right: auto;
     border: var(--border);
     text-align: left;
 }
-

@@ -1,21 +1,23 @@
 let outputHome = document.getElementById("outputHome");
 let backButtonHome = `
-    <div class="backButton" onclick="printHome()">d</div>
+  <img src="img/arrowLeft.png" alt="arrowLeft.png" class="backButton" style="width: 150px; height: 150px; position: absolute; bottom: 5px; left: 5px;" onclick="printHome()">
+    
 `;
+
 let home = `
-    <div class="button" onclick="printCharacterSelection()">Start</div>
-    <div class="button" onclick="printSettings()">Settings</div>
-    <div class="button" onclick="printAbout()">About</div>
-    <div class="button" onclick="printCredits()">Credits</div>
+    <div class="button pixel-borders pixel-borders--2" onclick="printCharacterSelection()">Start</div>
+    <div class="button pixel-borders pixel-borders--2" onclick="printSettings()">Settings</div>
+    <div class="button pixel-borders pixel-borders--2" onclick="printAbout()">About</div>
+    <div class="button pixel-borders pixel-borders--2" onclick="printCredits()">Credits</div>
 `
 let settings = `
 <div id="settingsHeadlines">
-   <div class="textBox">Language</div>
-   <div class="textBox">Fullscreen</div>
-   <div class="textBox">Game Speed</div>
+   <div class="textBox pixel-borders pixel-borders--2">Language</div>
+   <div class="textBox pixel-borders pixel-borders--2">Fullscreen</div>
+   <div class="textBox pixel-borders pixel-borders--2">Game Speed</div>
 </div>
 
-<div id="settings">
+<div class="settings">
    <div class="settOp">
        <div class="arrowLeft"></div>
        <p>English</p>
@@ -23,7 +25,7 @@ let settings = `
    </div>
 </div>
 
-<div id="settings">
+<div class="settings">
    <div class="settOp">
        <div class="arrowLeft"></div>
        <p>Off</p>
@@ -31,7 +33,7 @@ let settings = `
    </div>
 </div>
 
-<div id="settings">
+<div class="settings">
    <div class="settOp">
        <div class="arrowLeft"></div>
        <p>2x</p>
@@ -40,7 +42,7 @@ let settings = `
 </div>
 `;
 let about = `
-<div class="infoBox">
+<div class="infoBox pixel-borders pixel-borders--2">
         <p>
             Fiction Battles is a game inspired by games
             like Super Smash Bros or Mortal Combat. The
@@ -69,6 +71,7 @@ let about = `
 </div>
 `;
 
+
 disableScrolling();
 
 function disableScrolling() {
@@ -80,15 +83,15 @@ function enableScrolling() {
 }
 
 function printHome() {
-    outputHome.innerHTML = home
+    outputHome.innerHTML = home;
 }
 
 function printSettings() {
-    outputHome.innerHTML = settings;
-    outputHome.innerHTML += backButtonHome;
+    outputHome.innerHTML = settings + backButtonHome;
+   // outputHome.innerHTML += backButtonHome;
 }
 
 function printAbout() {
-    outputHome.innerHTML = about;
-    outputHome.innerHTML += backButtonHome;
+    outputHome.innerHTML = about + backButtonHome;
+   // outputHome.innerHTML += backButtonHome;
 }
