@@ -52,6 +52,10 @@ ul {
     font-family: var(--text-font);
 }
 
+a {
+    text-decoration: none;
+}
+
 #header {
     width: 100%;
     background: linear-gradient( #110E69, #130F75, #211BCF);
@@ -135,7 +139,8 @@ ul {
 .settings {
     right: 8cm;
     position: relative;
-    bottom: 4.25cm;
+    bottom: 4.5cm;
+
 }
 
 #settingsHeadlines {
@@ -175,4 +180,9 @@ ul {
     background-color: var(--secondary-color);
     border: var(--border);
     text-align: left;
+}
+
+#bodyCharSel {
+    background-image: url("img/backgroundCharSel.jpg");
+    background-size: cover;
 }

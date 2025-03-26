@@ -1,6 +1,5 @@
 .pixel-borders {
   position: relative;
-  margin: 0 15px 15px 0;
   padding: 15px 20px;
 }
 
@@ -50,7 +49,6 @@
 }
 
 .pixel-borders--2 {
-  border-color: #0c639c;
   border-image-slice: 4;
   border-image-width: 2;
   border-image-outset: 0;
