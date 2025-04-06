@@ -71,7 +71,6 @@ let about = `
 </div>
 `;
 
-
 disableScrolling();
 
 function disableScrolling() {

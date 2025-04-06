@@ -26,7 +26,7 @@ body, html {
 }
 
 body {
-    background-image: url('img/background.jpg');
+    background-image: url("img/background_charSel.gif");
     background-size: cover;
 }
 
@@ -38,6 +38,12 @@ h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
+}
+
+h2 {
+    font-family: var(--text-font);
+    color: var(--main-color);
+    text-align: center;
 }
 
 p {
@@ -182,7 +188,18 @@ a {
     text-align: left;
 }
 
-#bodyCharSel {
-    background-image: url("img/backgroundCharSel.jpg");
-    background-size: cover;
+#body_characterSelection {
+    
+}
+
+.container_characterSelection {
+    display: flex;
+    position: relative;
+    top: 3cm;
+    left: 8cm;
+}
+
+.characterOption {
+    position: relative;
+    margin-left: 5cm;
 }
