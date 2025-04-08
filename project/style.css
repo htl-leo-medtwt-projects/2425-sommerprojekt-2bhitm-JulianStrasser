@@ -203,3 +203,25 @@ a {
     position: relative;
     margin-left: 5cm;
 }
+
+.charSel_Player1 {
+    position: absolute;
+    bottom: 2.85cm;
+    left: 1.5cm;
+}
+
+.charSel_Player2 {
+    position: absolute;
+    bottom: 2.75cm;
+    transform: scaleX(-1);
+}
+
+#nameCharacter1 {
+    bottom: 1.5cm;
+    position: relative;
+}
+
+#nameCharacter2 {
+    bottom: 1.5cm;
+    position: relative;
+}

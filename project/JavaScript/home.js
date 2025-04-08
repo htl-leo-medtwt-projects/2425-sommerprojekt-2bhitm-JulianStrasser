@@ -9,7 +9,7 @@ let home = `
     <div class="button pixel-borders pixel-borders--2" onclick="printSettings()">Settings</div>
     <div class="button pixel-borders pixel-borders--2" onclick="printAbout()">About</div>
     <div class="button pixel-borders pixel-borders--2" onclick="printCredits()">Credits</div>
-`
+    `;
 let settings = `
 <div id="settingsHeadlines">
    <div class="textBox pixel-borders pixel-borders--2">Language</div>
