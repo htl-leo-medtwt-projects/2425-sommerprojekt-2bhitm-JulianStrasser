@@ -8,6 +8,18 @@
     src: url('font/PressStart2P.ttf');
 }
 
+@keyframes upAndDown {
+    0% {
+        transform: translateY(0); /* Start at the original position */
+    }
+    50% {
+        transform: translateY(-3px); /* Move up by 10px */
+    }
+    100% {
+        transform: translateY(0); /* Return to the original position */
+    }
+}
+
 :root {
     --main-color: #FFD700;
     --secondary-color: #110E69;
@@ -15,6 +27,8 @@
     --headline-font: 'SquarePixel22';
     --text-font: 'PressStart2P';
     --border: 4px solid #FFD700;
+    --player1Color: rgb(82, 82, 233);
+    --player2Color: rgb(208, 82, 82);
 }
 
 * {
@@ -44,6 +58,10 @@ h2 {
     font-family: var(--text-font);
     color: var(--main-color);
     text-align: center;
+    top: 2cm;
+    position: absolute;
+    font-size: 20px;
+    left: 14.5cm;
 }
 
 p {
@@ -195,7 +213,7 @@ a {
 .container_characterSelection {
     display: flex;
     position: relative;
-    top: 3cm;
+    top: 6cm;
     left: 8cm;
 }
 
@@ -219,9 +237,54 @@ a {
 #nameCharacter1 {
     bottom: 1.5cm;
     position: relative;
+    color: rgb(82, 82, 233);
 }
 
 #nameCharacter2 {
     bottom: 1.5cm;
     position: relative;
+    color: rgb(208, 82, 82);
+}
+
+#versus {
+    position: absolute;
+    left: 12cm;
+    animation: upAndDown 1s infinite;
+}
+
+.charSelImg {
+    height: 100px;
+}
+
+table {
+    border-collapse: collapse;
+    border: solid 3px lightslategray;
+}
+
+td {
+    border: solid 3px lightslategray;
+    background-color: black;
+}
+
+#characterSelTable_Player1 {
+    top: 0;
+    position: absolute;
+}
+
+td:hover {
+    cursor: pointer;
+}
+
+#characterSelTable_Player1 td:hover {
+    background-color: var(--player1Color);
+}
+
+#characterSelTable_Player2 td:hover {
+    background-color: var(--player2Color);
+}
+
+#characterSelTable_Player2 {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
