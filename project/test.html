@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Addons/pixelBorders/pixel-borders/docs/styles/pixel-borders.css">
     <script src="JavaScript/home.js" defer></script>
 </head>
 <body id="body_characterSelection">
     
     <h2>CHOOSE YOUR CHARACTER!</h2>
+    
 
     <table id="characterSelTable_Player1">
         <tr>
@@ -36,16 +38,16 @@
     <div class="container_characterSelection">
         <div class="characterOption" id="character1">
             <p id="nameCharacter1">Omni-Man</p>
-            <img class="charSel_Player1" src="img/omniMan/standing_omniMan.gif" alt="player1">
-            <img src="img/platfrom.png" alt="platfrom" width="200px">
+            <img id="omniMan" class="charSel_Player1" src="img/omniMan/standing_omniMan.gif" alt="player1">
         </div>
         <img id="versus" src="img/versus.png" alt="" width="100px">
         <div class="characterOption" id="character2">
             <p id="nameCharacter2">Doomslayer</p>
-            <img class="charSel_Player2" src="img/doomslayer/standing_doomslayer.gif" height="135px" alt="player2">
-            <img src="img/platfrom.png" alt="platfrom" width="200px">
+            <img id="doomslayer" class="charSel_Player2" src="img/doomslayer/standing_doomslayer.gif" alt="player2">
         </div>
     </div>
+
+    <div class="button pixel-borders pixel-borders--2" style="top: 6cm;">Confirm</div>
 
 </body>
 </html>
