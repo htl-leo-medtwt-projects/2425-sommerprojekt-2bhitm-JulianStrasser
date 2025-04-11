@@ -413,6 +413,21 @@ td:hover {
     background-color: var(--player2Color);
 }
 
-#goku {
+.goku {
     height: 150px;
+    top: 2cm;
+    left: 1.5cm;
+}
+
+.doomslayer {
+    position: relative;
+    left: 1cm;
+}
+
+.vader {
+    height: 200px;
+}
+
+.darkseid {
+    height: 200px;
 }

@@ -101,23 +101,23 @@ function insertSel(character, table) {
     let selBoxContent = [
         `   <img onclick="printInfoAbout(0)" class="infoButton" src="img/info.png" alt="info">
             <p>Omni-Man</p>
-            <img class="omniMan" class="charSel_Player1" src="img/omniMan/standing_omniMan.gif" alt="player1">`,
+            <img class="omniMan" src="img/omniMan/standing_omniMan.gif" alt="player1">`,
 
             `<img onclick="printInfoAbout(1)" class="infoButton" src="img/info.png" alt="info">
-            <p id="nameCharacter1">Doomslayer</p>
-            <img class="doomslayer" class="charSel_Player1" src="img/doomslayer/standing_doomslayer.gif" alt="player1">`,
+            <p>Doomslayer</p>
+            <img class="doomslayer" src="img/doomslayer/standing_doomslayer.gif" alt="player1">`,
 
             `<img onclick="printInfoAbout(2)" class="infoButton" src="img/info.png" alt="info">
-            <p></p>
-            <img id="goku" class="charSel_Player1" src="img/goku/standing_goku.png" alt="player1">`,
+            <p>Son Goku</p>
+            <img class="goku" src="img/goku/standing_goku.png" alt="player1">`,
 
             `<img onclick="printInfoAbout(3)" class="infoButton" src="img/info.png" alt="info">
             <p>Darth Vader</p>
-            <img id="vader" class="charSel_Player1" src="img/vader/standing_vader.png" alt="player1">`,
+            <img class="vader" src="img/vader/standing_vader.png" alt="player1">`,
 
             `<img onclick="printInfoAbout(4)" class="infoButton" src="img/info.png" alt="info">
             <p>Darkseid</p>
-            <img id="darkseid" class="charSel_Player1" src="img/darkseid/standing_darkseid.png" alt="player1">`
+            <img class="darkseid" src="img/darkseid/standing_darkseid.png" alt="player1">`
     ]
 
 
