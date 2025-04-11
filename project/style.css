@@ -87,6 +87,10 @@
     --player2Color: rgb(208, 82, 82);
     --animation_upAndDown: upAndDown 1s infinite;
     --animation_redYellow: redYellow 3s infinite;
+    --animation_fadeInFromTop: fadeInFromTop 1s forwards;
+    --animation_fadeInFromBottom: fadeInFromBottom 1s forwards;
+    --animation_fadeInFromLeft: fadeInFromLeft 1s forwards;
+    --animation_fadeInFromRight: fadeInFromRight 1s forwards;
 }
 
 * {
@@ -292,12 +296,12 @@ a {
     right: 2cm;
 }
 
-#nameCharacter1 {
+#character1 p {
     position: relative;
     color: rgb(82, 82, 233);
 }
 
-#nameCharacter2 {
+#character2 p {
     position: relative;
     color: rgb(208, 82, 82);
 }
@@ -325,6 +329,7 @@ td {
 #characterSelTable_Player1 {
     top: 0;
     position: absolute;
+    animation: var(--animation_fadeInFromLeft);
 }
 
 td:hover {
@@ -343,17 +348,24 @@ td:hover {
     position: absolute;
     right: 0;
     top: 0;
+    animation: var(--animation_fadeInFromRight);
 }
 
 #character1 {
     background-color: var(--third-color);
     border: var(--player1Color) solid 3px;
     right: 3.5cm;
+    animation: var(--animation_fadeInFromLeft);
 }
 
 #character2 {
     background-color: rgb(218, 33, 33);
     border: var(--player2Color) solid 3px;
+    animation: var(--animation_fadeInFromRight);
+}
+
+#character2 img {
+    transform: scaleX(-1);
 }
 
 .characterOption {
@@ -365,12 +377,42 @@ td:hover {
     right: 3cm;
 }
 
-.container_characterSelection #omniMan {
+.container_characterSelection .omniMan {
     height: 190px;
     left: 0.5cm;
 }
 
-.container_characterSelection #doomslayer {
+.container_characterSelection .doomslayer {
     height: 190px;
     right: 0.5cm;
+}
+
+#confirm_charSelScreen {
+    animation: var(--animation_fadeInFromBottom);
+}
+
+.infoButton {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    z-index: 8;
+    right: 0.5vw;
+    bottom: 0.5vh;
+}
+
+.infoButton:hover {
+    cursor: pointer;
+    background-image: url('img/info_hovered.png');
+}
+
+#charSel1_0 {
+    background-color: var(--player1Color);
+}
+
+#charSel2_1 {
+    background-color: var(--player2Color);
+}
+
+#goku {
+    height: 150px;
 }

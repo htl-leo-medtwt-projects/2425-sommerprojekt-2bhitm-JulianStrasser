@@ -12,24 +12,23 @@
     
     <h2>CHOOSE YOUR CHARACTER!</h2>
     
-
     <table id="characterSelTable_Player1">
         <tr>
-            <td><img class="charSelImg" src="img/omniMan/omniMan_charSel.png" alt="Omni-Man"></td>
-            <td><img class="charSelImg" src="img/doomslayer/doomslayer_charSel.png" alt=""></td>
-            <td><img class="charSelImg" src="img/goku/goku_charSel.png" alt=""></td>
-            <td><img class="charSelImg" src="img/vader/vader_charSel.png" alt=""></td>
-            <td><img class="charSelImg" src="img/darkseid/darkseid_charSel.png" alt=""></td>
+            <td id="charSel1_0"><img onclick="insertSel(0, 1)" class="charSelImg"  src="img/omniMan/omniMan_charSel.png" alt="Omni-Man"></td>
+            <td id="charSel1_1"><img onclick="insertSel(1, 1)" class="charSelImg" src="img/doomslayer/doomslayer_charSel.png" alt="Doomslayer"></td>
+            <td id="charSel1_2"><img onclick="insertSel(2, 1)" class="charSelImg" src="img/goku/goku_charSel.png" alt="Son Goku"></td>
+            <td id="charSel1_3"><img onclick="insertSel(3, 1)" class="charSelImg" src="img/vader/vader_charSel.png" alt="Darth Vader"></td>
+            <td id="charSel1_4"><img onclick="insertSel(4, 1)" class="charSelImg" src="img/darkseid/darkseid_charSel.png" alt="Darkseid"></td>
         </tr>
     </table>
 
     <table id="characterSelTable_Player2">
         <tr>
-            <td><img class="charSelImg" src="img/omniMan/omniMan_charSel.png" alt="Omni-Man"></td>
-            <td><img class="charSelImg" src="img/doomslayer/doomslayer_charSel.png" alt=""></td>
-            <td><img class="charSelImg" src="img/goku/goku_charSel.png" alt=""></td>
-            <td><img class="charSelImg" src="img/vader/vader_charSel.png" alt=""></td>
-            <td><img class="charSelImg" src="img/darkseid/darkseid_charSel.png" alt=""></td>
+            <td id="charSel2_0"><img onclick="insertSel(0, 2)" class="charSelImg"  src="img/omniMan/omniMan_charSel.png" alt="Omni-Man"></td>
+            <td id="charSel2_1"><img onclick="insertSel(1, 2)" class="charSelImg"  src="img/doomslayer/doomslayer_charSel.png" alt="Doomslayer"></td>
+            <td id="charSel2_2"><img onclick="insertSel(2, 2)" class="charSelImg"  src="img/goku/goku_charSel.png" alt="Son Goku"></td>
+            <td id="charSel2_3"><img onclick="insertSel(3, 2)" class="charSelImg"  src="img/vader/vader_charSel.png" alt="Darth Vader"></td>
+            <td id="charSel2_4"><img onclick="insertSel(4, 2)" class="charSelImg"  src="img/darkseid/darkseid_charSel.png" alt="Darkseid"></td>
         </tr>
     </table>
 
@@ -37,17 +36,19 @@
 
     <div class="container_characterSelection">
         <div class="characterOption" id="character1">
+            <img onclick="printInfoAbout(0)" class="infoButton" src="img/info.png" alt="info">
             <p id="nameCharacter1">Omni-Man</p>
-            <img id="omniMan" class="charSel_Player1" src="img/omniMan/standing_omniMan.gif" alt="player1">
+            <img class="omniMan" class="charSel_Player1" src="img/omniMan/standing_omniMan.gif" alt="player1">
         </div>
         <img id="versus" src="img/versus.png" alt="" width="100px">
         <div class="characterOption" id="character2">
+            <img onclick="printInfoAbout(2)" class="infoButton" src="img/info.png" alt="info">
             <p id="nameCharacter2">Doomslayer</p>
-            <img id="doomslayer" class="charSel_Player2" src="img/doomslayer/standing_doomslayer.gif" alt="player2">
+            <img class="doomslayer" class="charSel_Player2" src="img/doomslayer/standing_doomslayer.gif" alt="player2">
         </div>
     </div>
 
-    <div class="button pixel-borders pixel-borders--2" style="top: 6cm;">Confirm</div>
+    <div id="confirm_charSelScreen" class="button pixel-borders pixel-borders--2" style="top: 6cm;">Confirm</div>
 
 </body>
 </html>

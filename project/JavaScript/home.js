@@ -70,6 +70,8 @@ let about = `
         </ul>
 </div>
 `;
+let characterPlayer1 = 0;
+let characterPlayer2 = 2;
 
 disableScrolling();
 
@@ -93,4 +95,48 @@ function printSettings() {
 function printAbout() {
     outputHome.innerHTML = about + backButtonHome;
    // outputHome.innerHTML += backButtonHome;
+}
+
+function insertSel(character, table) {
+    let selBoxContent = [
+        `   <img onclick="printInfoAbout(0)" class="infoButton" src="img/info.png" alt="info">
+            <p>Omni-Man</p>
+            <img class="omniMan" class="charSel_Player1" src="img/omniMan/standing_omniMan.gif" alt="player1">`,
+
+            `<img onclick="printInfoAbout(1)" class="infoButton" src="img/info.png" alt="info">
+            <p id="nameCharacter1">Doomslayer</p>
+            <img class="doomslayer" class="charSel_Player1" src="img/doomslayer/standing_doomslayer.gif" alt="player1">`,
+
+            `<img onclick="printInfoAbout(2)" class="infoButton" src="img/info.png" alt="info">
+            <p></p>
+            <img id="goku" class="charSel_Player1" src="img/goku/standing_goku.png" alt="player1">`,
+
+            `<img onclick="printInfoAbout(3)" class="infoButton" src="img/info.png" alt="info">
+            <p>Darth Vader</p>
+            <img id="vader" class="charSel_Player1" src="img/vader/standing_vader.png" alt="player1">`,
+
+            `<img onclick="printInfoAbout(4)" class="infoButton" src="img/info.png" alt="info">
+            <p>Darkseid</p>
+            <img id="darkseid" class="charSel_Player1" src="img/darkseid/standing_darkseid.png" alt="player1">`
+    ]
+
+
+    if (table === 1) {
+        characterPlayer1 = character;
+        for (let i = 0; i <= 4; i++) {
+            document.getElementById("charSel1_" + i).style.backgroundColor = "black";
+        }
+        document.getElementById("charSel1_" + character).style.backgroundColor = "var(--player1Color)";
+
+        document.getElementById("character1").innerHTML = selBoxContent[character];
+    }
+    if (table === 2) {
+        characterPlayer2 = character;
+        for (let i = 0; i <= 4; i++) {
+            document.getElementById("charSel2_" + i).style.backgroundColor = "black";
+        }
+        document.getElementById("charSel2_" + character).style.backgroundColor = "var(--player2Color)";
+
+        document.getElementById("character2").innerHTML = selBoxContent[character];
+    }
 }

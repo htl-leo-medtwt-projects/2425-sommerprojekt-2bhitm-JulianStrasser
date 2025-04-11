@@ -7,15 +7,15 @@
             "attacks": []
         },
         {
-            "name": "Son Goku",
-            "health": 950000,
-            "quote": "I am the hope of the universe.",
+            "name": "Doomslayer",
+            "health": 850000,
+            "quote": "No.",
             "attacks": []
         },
         {
-            "name": "Doom Slayer",
-            "health": 850000,
-            "quote": "No.",
+            "name": "Son Goku",
+            "health": 950000,
+            "quote": "I am the hope of the universe.",
             "attacks": []
         },
         {
