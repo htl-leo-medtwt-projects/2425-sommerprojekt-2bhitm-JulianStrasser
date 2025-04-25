@@ -3,30 +3,35 @@
         {
             "name": "Omni-Man",
             "health": 750000,
+            "AP": 400000,
             "quote": "You don't seem to understand. Earth isn't yours to conquer...",
             "attacks": []
         },
         {
             "name": "Doomslayer",
             "health": 850000,
+            "AP": 850000,
             "quote": "No.",
             "attacks": []
         },
         {
             "name": "Son Goku",
             "health": 950000,
+            "AP": 950000,
             "quote": "I am the hope of the universe.",
             "attacks": []
         },
         {
             "name": "Darth Vader",
             "health": 300000,
+            "AP": 120000,
             "quote": "Anakin Is Gone. I Am What Remains.",
             "attacks": []
         },
         {
             "name": "Darkseid",
             "health": 1000000,
+            "AP": 1000000,
             "quote": "I will send you to a hell without exit or end.",
             "attacks": []
         },

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiction Battles</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Addons/pixelBorders/pixel-borders/docs/styles/pixel-borders.css">
+    <script src="JavaScript/script.js" defer></script>
+</head>
+<body id="body_characterSelection">
+
+<h2>CHOOSE YOUR CHARACTER!</h2>
+
+<table id="characterSelTable_Player1">
+    <tr>
+        <td id="charSel1_0"><img onclick="insertSel(0, 1)" class="charSelImg"  src="img/Omni-Man/omniMan_charSel.png" alt="Omni-Man"></td>
+        <td id="charSel1_1"><img onclick="insertSel(1, 1)" class="charSelImg" src="img/Doomslayer/doomslayer_charSel.png" alt="Doomslayer"></td>
+        <td id="charSel1_2"><img onclick="insertSel(2, 1)" class="charSelImg" src="img/Goku/goku_charSel.png" alt="Son Goku"></td>
+        <td id="charSel1_3"><img onclick="insertSel(3, 1)" class="charSelImg" src="img/Vader/vader_charSel.png" alt="Darth Vader"></td>
+        <td id="charSel1_4"><img onclick="insertSel(4, 1)" class="charSelImg" src="img/Darkseid/darkseid_charSel.png" alt="Darkseid"></td>
+    </tr>
+</table>
+
+<table id="characterSelTable_Player2">
+    <tr>
+        <td id="charSel2_0"><img onclick="insertSel(0, 2)" class="charSelImg"  src="img/Omni-Man/omniMan_charSel.png" alt="Omni-Man"></td>
+        <td id="charSel2_1"><img onclick="insertSel(1, 2)" class="charSelImg"  src="img/Doomslayer/doomslayer_charSel.png" alt="Doomslayer"></td>
+        <td id="charSel2_2"><img onclick="insertSel(2, 2)" class="charSelImg"  src="img/Goku/goku_charSel.png" alt="Son Goku"></td>
+        <td id="charSel2_3"><img onclick="insertSel(3, 2)" class="charSelImg"  src="img/Vader/vader_charSel.png" alt="Darth Vader"></td>
+        <td id="charSel2_4"><img onclick="insertSel(4, 2)" class="charSelImg"  src="img/Darkseid/darkseid_charSel.png" alt="Darkseid"></td>
+    </tr>
+</table>
+
+
+
+<div class="container_characterSelection">
+    <div class="characterOption" id="character1">
+        <img onclick="printInfoAbout(0)" class="infoButton" src="img/info.png" alt="info">
+        <p id="nameCharacter1">Omni-Man</p>
+        <img class="omniMan" src="img/Omni-Man/still_omniMan.gif" alt="player1">
+    </div>
+    <img id="versus" src="img/versus.png" alt="" width="100px">
+    <div class="characterOption" id="character2">
+        <img onclick="printInfoAbout(2)" class="infoButton" src="img/info.png" alt="info">
+        <p id="nameCharacter2">Doomslayer</p>
+        <img class="doomslayer" src="img/Doomslayer/standing_Doomslayer.gif" alt="player2">
+    </div>
+</div>
+
+<div id="confirm_charSelScreen" class="button pixel-borders pixel-borders--2" style="top: 6cm;">Confirm</div>
+
+</body>
+</html>

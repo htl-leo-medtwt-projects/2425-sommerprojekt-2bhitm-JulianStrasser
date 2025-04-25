@@ -54,6 +54,7 @@
         opacity: 1;
     }
 }
+
 @keyframes fadeInFromLeft {
     0% {
         transform: translateX(-100%);
@@ -108,7 +109,7 @@ body {
 
 h1 {
     font-family: 'SquarePixel22';
-    font-size: 64;
+    font-size: 64px;
     text-align: center;
     background: linear-gradient( #FFD700, #9C9052);
     -webkit-background-clip: text;
@@ -129,7 +130,7 @@ h2 {
 
 p {
     font-family: 'PressStart2P';
-    font-size: 24;
+    font-size: 24px;
     text-align: center;
     color: var(--main-color);
 }
@@ -255,7 +256,6 @@ a {
 
 .backbutton:hover {
     cursor: pointer;
-    background-image: url('img/backButton_Blue.png');
 }
 
 .infoBox {
@@ -430,4 +430,50 @@ td:hover {
 
 .darkseid {
     height: 200px;
+}
+
+#gameBackground {
+    background-size: cover;
+}
+
+.hpBar {
+    width: 33%;
+    background-color: darkred;
+    border: solid 3px black;
+    height: 50px;
+    z-index: 100;
+}
+
+#hpBar_p2 {
+    right: 0;
+    position: absolute;
+    transform: scaleX(-1);
+}
+
+#currentHP_p1 {
+    background-color: green;
+    width: 100%;
+    height: 50px;
+}
+
+#currentHP_p2 {
+    background-color: green;
+    width: 80%;
+    height: 50px;
+}
+
+#p1 {
+    position: absolute; 
+}
+
+#p2 {
+    position: absolute;
+}
+
+.omnimanGame {
+    width: 200px;
+}
+
+.doomslayerGame {
+    width: 200px;
 }
