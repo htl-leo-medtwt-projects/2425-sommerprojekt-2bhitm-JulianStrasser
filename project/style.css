@@ -10,13 +10,13 @@
 
 @keyframes upAndDown {
     0% {
-        transform: translateY(0); /* Start at the original position */
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-3px); /* Move up by 10px */
+        transform: translateY(-3px); 
     }
     100% {
-        transform: translateY(0); /* Return to the original position */
+        transform: translateY(0); 
     }
 }
 
@@ -109,7 +109,6 @@ body {
 
 h1 {
     font-family: 'SquarePixel22';
-    font-size: 64px;
     text-align: center;
     background: linear-gradient( #FFD700, #9C9052);
     -webkit-background-clip: text;
@@ -476,4 +475,107 @@ td:hover {
 
 .doomslayerGame {
     width: 200px;
+}
+
+.charSelBox {
+    width: 33%;
+    height: 100%;
+  }
+  
+.charName {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 15vh;
+    background-color: #110E69;
+   
+  }
+  
+#character1Box {
+    
+  }
+  
+#nameCharacter1 {
+    
+  }
+  
+.charSelImg {
+    background-color: black;
+    width: 50%;
+    
+  }
+  
+.characterInfo {
+    height: 70vh;
+    width: 31.45vw;
+  }
+  
+.flex {
+    display: flex;
+  }
+  
+.infos {
+    text-align: right;
+    padding-right: 25px;
+    position: relative;
+    margin-top: 0;
+  }
+  
+#infoChar1 {
+    background: linear-gradient(46deg, rgba(95, 116, 184, 1) 0%, rgba(46, 67, 145, 1) 51%, rgba(0, 21, 107, 1) 100%);
+  }
+  
+.chooseCharacter {
+    height: 15vh;
+    position: relative;
+    align-content: center;
+    text-align: center;
+    background-color: #110E69; 
+    border: solid 2px #FFD700;
+  }
+  
+#chooseChar1 {
+    background-color: #110E69; 
+  }
+  
+.charSelBox p {
+    color: #FFD700;
+  }
+
+#stats_char1 {
+    text-align: right;
+    position: relative;
+    left: 5.5cm;
+}
+
+#char1Img {
+    position: relative;
+    left: 3cm;
+    top: 3cm;
+}
+
+#character2Box {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#infoChar2 {
+    background: linear-gradient(45deg,rgba(155, 42, 42, 1) 36%, rgba(199, 87, 87, 1) 62%, rgba(237, 83, 83, 1) 100%);
+}
+
+#char2Img {
+    position: relative;
+    left: 2.5cm;
+    top: 1cm;
+}
+
+#stats_char2 {
+    text-align: left;
+    position: relative;
+    left: 1cm;
+}
+
+.charName {
+    border: solid 2px #FFD700;
 }

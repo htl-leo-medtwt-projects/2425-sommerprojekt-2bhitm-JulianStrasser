@@ -91,6 +91,29 @@ let characters = [
     }
     ];
 
+let gameSettoff = `
+<body id="gameBackground">
+
+    <div style="display: flex">
+        <div id="hpBar_p1" class="hpBar">
+            <p style="position: absolute; color: white; font-size: 13px">1000000/1000000</p>
+            <div id="currentHP_p1"></div>
+        </div>
+
+        <div id="hpBar_p2" class="hpBar">
+            <p style="position: absolute; transform: scaleX(-1); color: white; font-size: 13px">1000000/1000000</p>
+            <div id="currentHP_p2"></div>
+        </div>
+    </div>
+
+
+
+    <div id="p1" class="omnimanGame"><img src="img/Omni-Man/standing_omniMan.gif" height="280px"></div>
+
+    <div id="p2" class="doomslayerGame" style="transform: scaleX(-1);"><img src="img/Doomslayer/standing_Doomslayer.gif" height="280"></div>
+
+</body>
+`;
 let outputHome = document.getElementById("outputHome");
 let backButtonHome = `
   <img src="img/arrowLeft.png" alt="arrowLeft.png" class="backButton" style="width: 150px; height: 150px; position: absolute; bottom: 5px; left: 5px;" onclick="printHome()">
@@ -189,8 +212,8 @@ let lastKey = "s";
 let lastKeyP2 = "arrowdown";
 let comboCounterP1 = 1;
 let comboCounterP2 = 1;
-let gKeyPressed = false; // Verfolgt, ob die Taste "g" gedrückt ist
-let attackCooldown = false; // Verhindert, dass eine neue Attacke während der Verzögerung gestartet wird
+let gKeyPressed = false;
+let attackCooldown = false;
 
 
 disableScrolling();
@@ -422,4 +445,143 @@ function playAnimation( oldGif, newGif, element, duration) {
     }, duration);
 }
 
+function printGame() {
+    document.body.innerHTML = gameSettoff;
+}
+
 setGameElements();
+
+
+/*
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fiction Battles</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="JavaScript/script.js" defer></script>
+</head>
+<body>
+    <div class="charSelBox" id="character1Box">
+        <div id="nameCharacter1" class="charName">
+            <p>
+            ???
+            </p>
+        </div>
+        <div class="characterInfo flex">  
+             <div class="infos" id="infoChar1">
+               <p>stats</p>
+             </div> 
+       </div>
+       <div class="chooseCharacter" id="chooseChar1">
+            <p>Choose Character</p>
+       </div>
+       </div>
+        
+     
+        
+     
+</body>
+</html>
+
+
+:root {
+    --main-color: #FFD700;
+    --secondary-color: #110E69;
+    --third-color: #211BCF;
+    --headline-font: 'SquarePixel22';
+    --text-font: 'PressStart2P';
+    --border: 4px solid #FFD700;
+    --player1Color: rgb(82, 82, 233);
+    --player2Color: rgb(208, 82, 82);
+    --animation_upAndDown: upAndDown 1s infinite;
+    --animation_redYellow: redYellow 3s infinite;
+    --animation_fadeInFromTop: fadeInFromTop 1s forwards;
+    --animation_fadeInFromBottom: fadeInFromBottom 1s forwards;
+    --animation_fadeInFromLeft: fadeInFromLeft 1s forwards;
+    --animation_fadeInFromRight: fadeInFromRight 1s forwards;
+}
+
+body, html {
+    margin: 0;
+}
+
+.charSelBox {
+  width: 33%;
+  height: 100%;
+}
+
+.charName {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 15vh;
+  background-color: #110E69;
+ 
+}
+
+#character1Box {
+  
+}
+
+#nameCharacter1 {
+  
+}
+
+.charSelImg {
+  background-color: black;
+  width: 50%;
+  
+}
+
+.characterInfo {
+  height: 70vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.infos {
+  width: 100vw;
+  text-align: right;
+  padding-right: 25px;
+  position: relative;
+  margin-top: 0;
+}
+
+#infoChar1 {
+  background: linear-gradient(46deg, rgba(95, 116, 184, 1) 0%, rgba(46, 67, 145, 1) 51%, rgba(0, 21, 107, 1) 100%);
+}
+
+.chooseCharacter {
+  height: 15vh;
+  position: relative;
+  align-content: center;
+  text-align: center;
+}
+
+#chooseChar1 {
+  background-color: #110E69; 
+}
+
+.charSelBox p {
+  color: #FFD700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

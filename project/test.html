@@ -6,25 +6,36 @@
     <link rel="stylesheet" href="style.css">
     <script src="JavaScript/script.js" defer></script>
 </head>
-<body id="gameBackground">
-
-    <div style="display: flex">
-        <div id="hpBar_p1" class="hpBar">
-            <p style="position: absolute; color: white; font-size: 13px">1000000/1000000</p>
-            <div id="currentHP_p1"></div>
+<body>
+    <div class="charSelBox" id="character1Box">
+        <div id="nameCharacter1" class="charName">
+            <p>
+            ???
+            </p>
         </div>
-
-        <div id="hpBar_p2" class="hpBar">
-            <p style="position: absolute; transform: scaleX(-1); color: white; font-size: 13px">1000000/1000000</p>
-            <div id="currentHP_p2"></div>
-        </div>
+        <div class="characterInfo infos flex" id="infoChar1">  
+            <img src="img/questionmark.png" height="200px" alt="questionmark" id="char1Img">
+            <p id="stats_char1">stats</p>
+       </div>
+       <div class="chooseCharacter" id="chooseChar1">
+            <p>Choose Character</p>
+       </div>
     </div>
 
-
-
-    <div id="p1" class="omnimanGame"><img src="img/Omni-Man/standing_omniMan.gif" height="280px"></div>
-
-    <div id="p2" class="doomslayerGame" style="transform: scaleX(-1);"><img src="img/Doomslayer/standing_Doomslayer.gif" height="280"></div>
-
+    <div class="charSelBox" id="character2Box">
+        <div id="nameCharacter2" class="charName">
+            <p>
+            ???
+            </p>
+        </div>
+        <div class="characterInfo infos flex" id="infoChar2"> 
+            <p id="stats_char2">stats</p>
+            <img src="img/questionmark.png" height="200px" alt="questionmark" id="char2Img">
+       </div>
+       <div class="chooseCharacter" id="chooseChar2">
+            <p>Choose Character</p>
+       </div>
+    </div>
+        
 </body>
 </html>
