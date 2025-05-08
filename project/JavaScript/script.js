@@ -214,7 +214,7 @@ let comboCounterP1 = 1;
 let comboCounterP2 = 1;
 let gKeyPressed = false;
 let attackCooldown = false;
-
+let swiper;
 
 disableScrolling();
 
@@ -232,12 +232,10 @@ function printHome() {
 
 function printSettings() {
     outputHome.innerHTML = settings + backButtonHome;
-    // outputHome.innerHTML += backButtonHome;
 }
 
 function printAbout() {
     outputHome.innerHTML = about + backButtonHome;
-    // outputHome.innerHTML += backButtonHome;
 }
 
 function insertSel(character, table) {
@@ -438,7 +436,7 @@ function inBoundsTop(y) {
     return false;
 }
 
-function playAnimation( oldGif, newGif, element, duration) {
+function playAnimation(oldGif, newGif, element, duration) {
     element.innerHTML = newGif;
     setTimeout(() => {
         element.innerHTML = oldGif;
@@ -449,139 +447,123 @@ function printGame() {
     document.body.innerHTML = gameSettoff;
 }
 
-setGameElements();
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 
-
-/*
-
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fiction Battles</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="JavaScript/script.js" defer></script>
-</head>
-<body>
-    <div class="charSelBox" id="character1Box">
-        <div id="nameCharacter1" class="charName">
-            <p>
-            ???
-            </p>
+function chooseCharacter(player) {
+    if (player === 1) {
+        let charSel1 = `
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Darkseid/darkseid_charSel.png">
+                    <p>Darkseid</p>
+                    <p class="red-text" onclick="insertChar(1, 4)">ok</p>
+                </div>
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Doomslayer/doomslayer_charSel.png">
+                    <p>Doomslayer</p>
+                    <p class="red-text" onclick="insertChar(1, 1)">ok</p>
+                </div>
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Goku/goku_charSel.png">
+                    <p>Son Goku</p>
+                    <p class="red-text" onclick="insertChar(1, 2)">ok</p>
+                </div>
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Omni-Man/omniMan_charSel.png">
+                    <p>Omni-Man</p>
+                    <p class="red-text" onclick="insertChar(1, 0)">ok</p>
+                </div>
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Vader/vader_charSel.png">
+                    <p>Darth Vader</p>
+                    <p class="red-text" onclick="insertChar(1, 3)">ok</p>
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
-        <div class="characterInfo flex">  
-             <div class="infos" id="infoChar1">
-               <p>stats</p>
-             </div> 
-       </div>
-       <div class="chooseCharacter" id="chooseChar1">
-            <p>Choose Character</p>
-       </div>
-       </div>
-        
-     
-        
-     
-</body>
-</html>
+    `;
 
+    document.body.innerHTML += charSel1;
+    }
 
-:root {
-    --main-color: #FFD700;
-    --secondary-color: #110E69;
-    --third-color: #211BCF;
-    --headline-font: 'SquarePixel22';
-    --text-font: 'PressStart2P';
-    --border: 4px solid #FFD700;
-    --player1Color: rgb(82, 82, 233);
-    --player2Color: rgb(208, 82, 82);
-    --animation_upAndDown: upAndDown 1s infinite;
-    --animation_redYellow: redYellow 3s infinite;
-    --animation_fadeInFromTop: fadeInFromTop 1s forwards;
-    --animation_fadeInFromBottom: fadeInFromBottom 1s forwards;
-    --animation_fadeInFromLeft: fadeInFromLeft 1s forwards;
-    --animation_fadeInFromRight: fadeInFromRight 1s forwards;
+    if (player === 2) {
+        let charSel2 = `
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Darkseid/darkseid_charSel.png">
+                    <p>Darkseid</p>
+                    <p class="red-text" onclick="insertChar(2, 4)">ok</p>
+                </div>
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Doomslayer/doomslayer_charSel.png">
+                    <p>Doomslayer</p>
+                    <p class="red-text" onclick="insertChar(2, 1)">ok</p>
+                </div>
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Goku/goku_charSel.png">
+                    <p>Son Goku</p>
+                    <p class="red-text" onclick="insertChar(2, 2)">ok</p>
+                </div>
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Omni-Man/omniMan_charSel.png">
+                    <p>Omni-Man</p>
+                    <p class="red-text" onclick="insertChar(2, 0)">ok</p>
+                </div>
+                <div class="swiper-slide">
+                    <img class="charSelImg2" src="./img/Vader/vader_charSel.png">
+                    <p>Darth Vader</p>
+                    <p class="red-text" onclick="insertChar(2, 3)">ok</p>
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    `;
+
+    document.body.innerHTML += charSel2;
+    }
+
+    const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 }
 
-body, html {
-    margin: 0;
+function insertChar(player, character) {
+    let characterImages = [
+        `<img class="characterImg" src="./img/Omni-Man/omniManCharSel.webp">`,
+        `<img class="characterImg" src="./img/Doomslayer/doomslayerCharSel.png">`,
+        `<img class="characterImg" src="./img/Goku/gokuCharSel.png">`,
+        `<img class="characterImg" src="./img/Vader/vaderCharSel.png">`,
+        `<img class="characterImg" src="./img/Darkseid/darkseidCharSel.webp">`,
+    ];
+
+    if (player === 1) {
+        characterPlayer1 = character;
+        document.getElementById("nameCharacter1").innerHTML = `<p>${characters[character].name}</p>`;
+        document.getElementById("characterImg1_Selection").innerHTML = characterImages[character];
+    } else if (player === 2) {
+        characterPlayer2 = character;
+        document.getElementById("nameCharacter2").innerHTML = `<p>${characters[character].name}</p>`;
+        document.getElementById("characterImg2_Selection").innerHTML = characterImages[character];
+    }
+
+    // Remove the slider after a character is chosen
+    const slider = document.querySelector('.swiper');
+    if (slider) {
+        slider.remove(); // Removes the slider from the DOM
+    }
 }
 
-.charSelBox {
-  width: 33%;
-  height: 100%;
-}
+// Attach the function to the global scope
+window.chooseCharacter = chooseCharacter;
+window.insertChar = insertChar;
 
-.charName {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  height: 15vh;
-  background-color: #110E69;
- 
-}
-
-#character1Box {
-  
-}
-
-#nameCharacter1 {
-  
-}
-
-.charSelImg {
-  background-color: black;
-  width: 50%;
-  
-}
-
-.characterInfo {
-  height: 70vh;
-}
-
-.flex {
-  display: flex;
-}
-
-.infos {
-  width: 100vw;
-  text-align: right;
-  padding-right: 25px;
-  position: relative;
-  margin-top: 0;
-}
-
-#infoChar1 {
-  background: linear-gradient(46deg, rgba(95, 116, 184, 1) 0%, rgba(46, 67, 145, 1) 51%, rgba(0, 21, 107, 1) 100%);
-}
-
-.chooseCharacter {
-  height: 15vh;
-  position: relative;
-  align-content: center;
-  text-align: center;
-}
-
-#chooseChar1 {
-  background-color: #110E69; 
-}
-
-.charSelBox p {
-  color: #FFD700;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
+disableScrolling();

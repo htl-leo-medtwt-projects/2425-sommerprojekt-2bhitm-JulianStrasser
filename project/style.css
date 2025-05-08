@@ -307,7 +307,9 @@ a {
 
 #versus {
     position: relative;
-    left: 0.5cm;
+    left: 18cm;
+    width: 200px;
+    bottom: 12cm;
     animation: var(--animation_upAndDown);
 }
 
@@ -532,12 +534,16 @@ td:hover {
     text-align: center;
     background-color: #110E69; 
     border: solid 2px #FFD700;
+    bottom: 55px;
   }
-  
-#chooseChar1 {
-    background-color: #110E69; 
+
+.chooseCharacter:hover {
+    background-color: white;
+    border-color: var(--secondary-color);
+    cursor: pointer;
+    color: var(--secondary-color);
   }
-  
+
 .charSelBox p {
     color: #FFD700;
   }
@@ -545,7 +551,7 @@ td:hover {
 #stats_char1 {
     text-align: right;
     position: relative;
-    left: 5.5cm;
+    left: 5.5vw;
 }
 
 #char1Img {
@@ -567,7 +573,7 @@ td:hover {
 #char2Img {
     position: relative;
     left: 2.5cm;
-    top: 1cm;
+    top: 3cm;
 }
 
 #stats_char2 {
@@ -579,3 +585,54 @@ td:hover {
 .charName {
     border: solid 2px #FFD700;
 }
+
+.questionmark {
+    animation: var(--animation_upAndDown);
+
+}
+
+.swiper {
+    width: 600px;
+    height: 300px;
+    z-index: 100;
+    position: relative;
+    bottom: 18cm;
+    background-color: rgba(24, 35, 82, 0.5);
+  }
+
+  .charSelImg2 {
+    height: 150px; 
+ }
+
+ .swiper-slide {
+    
+    display: block;
+    color: var(--main-color);
+ }
+
+ .swiper-slide p {
+    font: "PressStart2P";
+
+ }
+
+ .swiper img {
+    position: relative;
+    left: 6cm;
+ }
+
+ .red-text {
+    color: red;
+    user-select: none;
+ }
+
+ .red-text:hover {
+    cursor: pointer;
+    text-decoration: underline;
+ }
+
+ .characterImg {
+    height: 400px;
+    position: relative;
+    top: 1cm;
+    left: 1cm;
+ }

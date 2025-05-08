@@ -4,7 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fiction Battles</title>
     <link rel="stylesheet" href="style.css">
-    <script src="JavaScript/script.js" defer></script>
+    <script src="JavaScript/script.js" type="module" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
 </head>
 <body>
     <div class="charSelBox" id="character1Box">
@@ -14,13 +17,17 @@
             </p>
         </div>
         <div class="characterInfo infos flex" id="infoChar1">  
-            <img src="img/questionmark.png" height="200px" alt="questionmark" id="char1Img">
+            <div id="characterImg1_Selection">
+                <img class="questionmark" src="img/questionmark.png" height="200px" alt="questionmark" id="char1Img">
+            </div>
+            
             <p id="stats_char1">stats</p>
        </div>
-       <div class="chooseCharacter" id="chooseChar1">
-            <p>Choose Character</p>
-       </div>
+            <p class="chooseCharacter" id="chooseChar1" onclick="chooseCharacter(1)">Choose Character</p>
+       
     </div>
+
+    <img id="versus" src="img/versus.png" alt="" width="100px">
 
     <div class="charSelBox" id="character2Box">
         <div id="nameCharacter2" class="charName">
@@ -30,11 +37,12 @@
         </div>
         <div class="characterInfo infos flex" id="infoChar2"> 
             <p id="stats_char2">stats</p>
-            <img src="img/questionmark.png" height="200px" alt="questionmark" id="char2Img">
+            <div id="characterImg2_Selection">
+                <img class="questionmark" src="img/questionmark.png" height="200px" alt="questionmark" id="char2Img">
+            </div>
+            
        </div>
-       <div class="chooseCharacter" id="chooseChar2">
-            <p>Choose Character</p>
-       </div>
+            <p class="chooseCharacter" id="chooseChar2" onclick="chooseCharacter(2)">Choose Character</p>
     </div>
         
 </body>
