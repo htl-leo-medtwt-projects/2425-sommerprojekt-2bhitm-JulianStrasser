@@ -282,6 +282,11 @@ function insertSel(character, table) {
     }
 }
 
+player1.maxHP = characters[characterPlayer1].health;
+player1.currentHP = player1.maxHP;
+player2.maxHP = characters[characterPlayer1].health;
+player2.currentHP = player2.maxHP;
+
 function setGameElements() {
     game.style.backgroundImage = "url(./img/maps/map1.jpg)"
 
@@ -305,6 +310,7 @@ function gameLoop() {
             comboCounterP1 = 0;
         }
 
+        hit(p1, p2, 1000);
         playAnimation(
             characters[characterPlayer1].attacks.standing,
             characters[characterPlayer1].attacks.combo[comboCounterP1].name,
@@ -316,10 +322,11 @@ function gameLoop() {
     }
 
     if (!keys["g"]) {
-        gKeyPressed = false; // Markiere die Taste als losgelassen
+        gKeyPressed = false;
     }
 
     if (keys["w"] && keys["g"]) {
+        hit(p2, p2, 10000);
         playAnimation(
             characters[characterPlayer1].attacks.standing,
             characters[characterPlayer1].attacks.up,
@@ -385,13 +392,17 @@ function gameLoop() {
     }
 
     if (keys["2"]) {
+        hit(p1, p2, 1000);
         playAnimation(
             characters[characterPlayer2].attacks.standing,
             characters[characterPlayer2].attacks.combo[0].name,
             p2,
             500   
         )
+        
     }
+
+    console.log(Math.max(p1.offsetLeft, p2.offsetLeft) - Math.min(p1.offsetLeft, p2.offsetLeft))
 
     if (characterPlayer2 === 0) {
         if (keys["w"]) {
@@ -443,11 +454,25 @@ function playAnimation(oldGif, newGif, element, duration) {
     }, duration);
 }
 
+function hit(element1, element2, damage) {
+    if (Math.max(p1.offsetLeft, p2.offsetLeft) - Math.min(p1.offsetLeft, p2.offsetLeft) <= 200) {
+        if (element1 === p2) {
+            player2.currentHP -= damage;
+            document.getElementById("currentHP_p2").style.width = (player2.currentHP / player2.maxHP) * 100 + "%";
+            document.getElementById("hp2").innerHTML = player2.currentHP + "/" + player2.maxHP;
+        } else if (element1 === p1) {
+            player1.currentHP -= damage;
+            document.getElementById("currentHP_p1").style.width = (player1.currentHP / player1.maxHP) * 100 + "%";
+            document.getElementById("hp1").innerHTML = player1.currentHP + "/" + player1.maxHP;
+        }
+    }
+}
+
+
 function printGame() {
     document.body.innerHTML = gameSettoff;
 }
 
-import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 
 function chooseCharacter(player) {
     if (player === 1) {
@@ -562,8 +587,8 @@ function insertChar(player, character) {
     }
 }
 
-// Attach the function to the global scope
 window.chooseCharacter = chooseCharacter;
 window.insertChar = insertChar;
 
+setGameElements();
 disableScrolling();

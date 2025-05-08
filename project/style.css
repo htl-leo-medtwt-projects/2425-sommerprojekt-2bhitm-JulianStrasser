@@ -459,7 +459,7 @@ td:hover {
 
 #currentHP_p2 {
     background-color: green;
-    width: 80%;
+    width: 100%;
     height: 50px;
 }
 
@@ -469,6 +469,7 @@ td:hover {
 
 #p2 {
     position: absolute;
+    left: 5vw;
 }
 
 .omnimanGame {
@@ -635,4 +636,28 @@ td:hover {
     position: relative;
     top: 1cm;
     left: 1cm;
+ }
+
+ #confirmCharSel {
+    width: 200px;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    position: relative;
+    border: var(--border);
+    bottom: 120vh;
+    left: 43vw;
+    z-index: 101;
+    user-select: none;
+ }
+
+ #confirmCharSel:hover {
+    cursor: pointer;
+    background-color: white;
+    border-color: #110E69;
+    color: var(--secondary-color);
+ }
+
+ #gameBackground {
+    background-image: url("img/maps/map1.jpg");
+    background-size: cover;
  }
