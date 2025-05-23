@@ -552,7 +552,7 @@ td:hover {
 #stats_char1 {
     text-align: right;
     position: relative;
-    left: 5.5vw;
+    left: 2.5vw;
 }
 
 #char1Img {
@@ -661,3 +661,12 @@ td:hover {
     background-image: url("img/maps/map1.jpg");
     background-size: cover;
  }
+
+ .blink-red {
+    animation: blinkRed 0.2s alternate 3;
+}
+
+@keyframes blinkRed {
+    0%   { filter: none; }
+    100% { filter: brightness(2) sepia(1) hue-rotate(-50deg) saturate(5); }
+}

@@ -3,7 +3,6 @@ let characters = [
         "name": "Omni-Man",
         "health": 750000,
         "AP": 400000,
-        "quote": "You don't seem to understand. Earth isn't yours to conquer...",
         "attacks": {
                 "combo": [
                     {
@@ -40,54 +39,54 @@ let characters = [
         "name": "Doomslayer",
         "health": 850000,
         "AP": 850000,
-        "quote": "No.",
         "attacks": {
             "walking": `<img src="./img/Doomslayer/walking_Doomslayer.gif" height="280px">`,
             "standing": `<img src="./img/Doomslayer/standing_Doomslayer.gif" height="280px">`,
+            "up": `<img src="./img/Doomslayer/takingOutWeapon.gif" height="280px">`,
             "combo": [
                 {
                     "name": `<img src="./img/Doomslayer/primaryCombo_Doomslayer_1.gif" height="280px">`,
                     "duration": 800
                 }
 
-            ]
+            ],
+            "jump": `<img src="./img/Doomslayer/jump.gif" height="280px">`,
+            "standWithWeapon": `<img src="./img/Doomslayer/standingWithWeapon.png" height="280px">`,
+            "takingOutWeapon": `<img src="./img/Doomslayer/takingOutWeapon.gif" height="280px">`,
         }
     },
     {
         "name": "Son Goku",
         "health": 950000,
         "AP": 950000,
-        "quote": "I am the hope of the universe.",
         "attacks": []
     },
     {
         "name": "Darth Vader",
         "health": 300000,
         "AP": 120000,
-        "quote": "Anakin Is Gone. I Am What Remains.",
         "attacks": []
     },
     {
         "name": "Darkseid",
         "health": 1000000,
         "AP": 1000000,
-        "quote": "I will send you to a hell without exit or end.",
         "attacks": []
     },
     {
         "name": "Kratos",
         "health": 900000,
-        "quote": "Death can have me when it earns me."
+ 
     },
     {
         "name": "Matzgo",
         "health": 1000000,
-        "quote": "Du hast Ligma."
+        
     },
     {
         "name": "Clemens",
         "health": 1000000,
-        "qoute": "Ich esse keine Kinder, ich sperre sie nur ein."
+        
     }
     ];
 
@@ -215,6 +214,7 @@ let comboCounterP2 = 1;
 let gKeyPressed = false;
 let attackCooldown = false;
 let swiper;
+let isJumpingP2 = false;
 
 disableScrolling();
 
@@ -290,7 +290,6 @@ player2.currentHP = player2.maxHP;
 function setGameElements() {
     game.style.backgroundImage = "url(./img/maps/map1.jpg)"
 
-
     document.addEventListener("keydown", (e) => {
         keys[e.key.toLowerCase()] = true;
     });
@@ -310,13 +309,21 @@ function gameLoop() {
             comboCounterP1 = 0;
         }
 
-        hit(p1, p2, 1000);
-        playAnimation(
-            characters[characterPlayer1].attacks.standing,
-            characters[characterPlayer1].attacks.combo[comboCounterP1].name,
-            p1,
-            characters[characterPlayer1].attacks.combo[comboCounterP1].duration
-        );
+        if (hit(p1, p2)) {
+            playAnimation(
+                characters[characterPlayer1].attacks.standing,
+                characters[characterPlayer1].attacks.combo[comboCounterP1].name,
+                p1,
+                characters[characterPlayer1].attacks.combo[comboCounterP1].duration
+            );
+            // Make Omni-Man's combo even stronger
+            if (characterPlayer1 === 0) {
+                dealDamage(2, 100000); // Increased from 20000 to 100000
+            } else {
+                dealDamage(2, 1000);
+            }
+            showHit(p2);
+        }
 
         comboCounterP1++;
     }
@@ -326,13 +333,17 @@ function gameLoop() {
     }
 
     if (keys["w"] && keys["g"]) {
-        hit(p2, p2, 10000);
-        playAnimation(
-            characters[characterPlayer1].attacks.standing,
-            characters[characterPlayer1].attacks.up,
+        if (characterPlayer1 === 0) {
+            hit(p2, p2, 10000);
+            playAnimation(
+            characters[0].attacks.standing,
+            characters[0].attacks.up,
             p1,
             900
         );
+        pushPlayer(2);
+        }
+        
     }
 
     if (keys["a"]) {
@@ -402,15 +413,55 @@ function gameLoop() {
         
     }
 
-    console.log(Math.max(p1.offsetLeft, p2.offsetLeft) - Math.min(p1.offsetLeft, p2.offsetLeft))
+    // Doomslayer jump (Player 2, ArrowUp or Numpad 1)
+    if (
+        characterPlayer2 === 1 &&
+        (keys["1"]) &&
+        !isJumpingP2
+    ) {
+        isJumpingP2 = true;
+        playAnimation(
+            characters[1].attacks.standing,
+            characters[1].attacks.jump,
+            p2,
+            500
+        );
+        let jumpHeight = 120;
+        let jumpSpeed = 8;
+        let originalY = yP2;
+        let upInterval = setInterval(() => {
+            if (yP2 > originalY - jumpHeight) {
+                yP2 -= jumpSpeed;
+                p2.style.top = yP2 + "px";
+            } else {
+                clearInterval(upInterval);
+                let downInterval = setInterval(() => {
+                    if (yP2 < originalY) {
+                        yP2 += jumpSpeed;
+                        p2.style.top = yP2 + "px";
+                    } else {
+                        yP2 = originalY;
+                        p2.style.top = yP2 + "px";
+                        clearInterval(downInterval);
+                        isJumpingP2 = false;
+                    }
+                }, 16);
+            }
+        }, 16);
+    }
 
-    if (characterPlayer2 === 0) {
-        if (keys["w"]) {
-            if (inBoundsTop(yP2)) yP2 -= speed;
-        }
-        if (keys["s"]) {
-            if (inBoundsBottom(yP2)) yP2 += speed;
-        }
+    // Doomslayer special: ArrowUp + 2
+    if (
+        characterPlayer2 === 1 &&
+        keys["arrowup"] &&
+        keys["2"]
+    ) {
+        playAnimation(
+            characters[1].attacks.standWithWeapon,
+            characters[1].attacks.takingOutWeapon,
+            p2,
+            700
+        );
     }
 
     p2.style.left = xP2 + "px";
@@ -455,19 +506,37 @@ function playAnimation(oldGif, newGif, element, duration) {
 }
 
 function hit(element1, element2, damage) {
-    if (Math.max(p1.offsetLeft, p2.offsetLeft) - Math.min(p1.offsetLeft, p2.offsetLeft) <= 200) {
-        if (element1 === p2) {
-            player2.currentHP -= damage;
-            document.getElementById("currentHP_p2").style.width = (player2.currentHP / player2.maxHP) * 100 + "%";
-            document.getElementById("hp2").innerHTML = player2.currentHP + "/" + player2.maxHP;
-        } else if (element1 === p1) {
-            player1.currentHP -= damage;
-            document.getElementById("currentHP_p1").style.width = (player1.currentHP / player1.maxHP) * 100 + "%";
-            document.getElementById("hp1").innerHTML = player1.currentHP + "/" + player1.maxHP;
+    if (Math.max(element1.offsetLeft, element2.offsetLeft) - Math.min(element1.offsetLeft, element2.offsetLeft) <= 200) {
+        return true
+    }
+    return false;
+}
+
+function showHit(element) {
+    console.log("Animation");
+    element.style.animation = "blinkRed 0.1s alternate 3"
+}
+
+function dealDamage(playerRecieving, damage) {
+    if (playerRecieving === 1) {
+        player1.currentHP -= damage;
+        if (player1.currentHP < 0) player1.currentHP = 0;
+        document.getElementById("currentHP_p1").style.width = (player1.currentHP / player1.maxHP) * 100 + "%";
+        document.getElementById("hp1").innerHTML = player1.currentHP + "/" + player1.maxHP;
+        if (player1.currentHP <= 0) {
+            showGameOver(characters[characterPlayer2].name);
+        }
+    }
+    if (playerRecieving === 2) {
+        player2.currentHP -= damage;
+        if (player2.currentHP < 0) player2.currentHP = 0;
+        document.getElementById("currentHP_p2").style.width = (player2.currentHP / player2.maxHP) * 100 + "%";
+        document.getElementById("hp2").innerHTML = player2.currentHP + "/" + player2.maxHP;
+        if (player2.currentHP <= 0) {
+            showGameOver(characters[characterPlayer1].name);
         }
     }
 }
-
 
 function printGame() {
     document.body.innerHTML = gameSettoff;
@@ -570,21 +639,67 @@ function insertChar(player, character) {
         `<img class="characterImg" src="./img/Darkseid/darkseidCharSel.webp">`,
     ];
 
+    // Prepare stats HTML
+    const statsHtml = `
+        <span style="font-size: 0.6em;">
+            <strong>Name:</strong> ${characters[character].name}<br>
+            <strong>HP:</strong> ${characters[character].health}<br>
+            <strong>AP:</strong> ${characters[character].AP ?? "-"}
+        </span>
+    `;
+
     if (player === 1) {
         characterPlayer1 = character;
         document.getElementById("nameCharacter1").innerHTML = `<p>${characters[character].name}</p>`;
         document.getElementById("characterImg1_Selection").innerHTML = characterImages[character];
+        document.getElementById("stats_char1").innerHTML = statsHtml;
     } else if (player === 2) {
         characterPlayer2 = character;
         document.getElementById("nameCharacter2").innerHTML = `<p>${characters[character].name}</p>`;
         document.getElementById("characterImg2_Selection").innerHTML = characterImages[character];
+        document.getElementById("stats_char2").innerHTML = statsHtml;
     }
 
     // Remove the slider after a character is chosen
     const slider = document.querySelector('.swiper');
     if (slider) {
-        slider.remove(); // Removes the slider from the DOM
+        slider.remove();
     }
+}
+
+function showGameOver(winner) {
+    document.body.innerHTML = `
+        <style>
+            .gameover-restart-btn {
+                margin-top: 30px;
+                font-size: 1.5rem;
+                padding: 10px 30px;
+                font-family: 'PressStart2P';
+                background: #FFD700;
+                color: #110E69;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background 0.2s, color 0.2s;
+            }
+            .gameover-restart-btn:hover {
+                background: #110E69;
+                color: #FFD700;
+            }
+        </style>
+        <div style="
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            background: url('img/background_charSel.gif') center center / cover no-repeat;
+        ">
+            <h1 style="color: #FFD700; font-size: 4rem; font-family: 'PressStart2P';">Game Over</h1>
+            <h2 style="color: white; font-size: 2rem; text-shadow: 1px 1px 6px black; font-family: 'PressStart2P';">${winner} wins!</h2>
+            <button class="gameover-restart-btn" onclick="location.reload()">Restart</button>
+        </div>
+    `;
 }
 
 window.chooseCharacter = chooseCharacter;
