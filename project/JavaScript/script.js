@@ -16,16 +16,7 @@ let characters = [
                     {
                         "name": `<img src="./img/Omni-Man/primaryCombo_omniMan_3.gif" height="280px">`,
                         "duration": 800
-                    },
-                    {
-                        "name": `<img src="./img/Omni-Man/primaryCombo_omniMan_4.gif" height="280px">`,
-                        "duration": 800
-                    },
-                    {
-                        "name": `<img src="./img/Omni-Man/primaryCombo_omniMan_5.gif" height="280px">`,
-                        "duration": 800
                     }
-        
                     
                     
                 ],
