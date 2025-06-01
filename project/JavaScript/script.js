@@ -1,3 +1,5 @@
+const e = require("express");
+
 let characters = [
     {
         "name": "Omni-Man",
@@ -533,6 +535,64 @@ function printGame() {
     document.body.innerHTML = gameSettoff;
 }
 
+function isFacingRight(playerElement) {
+    return playerElement.style.transform !== "scaleX(-1)";
+}
+
+let projectileIndex = 0;
+function shootProjectile(player, gif, player) {
+    game.innerHTML += `<div id = "projectile${projectileIndex}"><img src="${gif}"></div>`;
+    let newProjectile = document.getElementById(`projectile${projectileIndex}`);
+    newProjectile.style.position = player.style.position;
+
+    if (player === 1) {
+        while (newProjectile.offsetLeft < 1300 && newProjectile.offsetLeft > -5 && hit(newProjectile, p2)) {
+            if (isFacingRight(p1)) { 
+                newProjectile.style.left = (newProjectile.offsetLeft + 10) + "px";
+                setTimeout(() => {
+                    if (hit(newProjectile, p2)) {
+                        dealDamage(2, 1000);
+                        showHit(p2);
+                    }
+                }
+                , 1000);
+            } else {
+                newProjectile.style.left = (newProjectile.offsetLeft - 10) + "px";
+                setTimeout(() => {
+                    if (hit(newProjectile, p2)) {
+                        dealDamage(2, 1000);
+                        showHit(p2);
+                    }
+                }
+                , 1000);
+            }
+    }
+    if (player === 2) {
+        while (newProjectile.offsetLeft > -5 && newProjectile.offsetLeft < 1300 && hit(newProjectile, p1)) {
+            if (isFacingRight(p2)) { 
+                newProjectile.style.left = (newProjectile.offsetLeft + 10) + "px";
+                setTimeout(() => {
+                    if (hit(newProjectile, p1)) {
+                        dealDamage(2, 1000);
+                        showHit(p2);
+                    }
+                }
+                , 1000);
+            } else {
+                newProjectile.style.left = (newProjectile.offsetLeft - 10) + "px";
+                setTimeout(() => {
+                    if (hit(newProjectile, p1)) {
+                        dealDamage(2, 1000);
+                        showHit(p2);
+                    }
+                }
+                , 1000);
+            }
+            }
+        }
+    projectileIndex++;
+    }
+}
 
 function chooseCharacter(player) {
     if (player === 1) {
