@@ -105,6 +105,9 @@ body, html {
 body {
     background-image: url("img/background_charSel.gif");
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
 }
 
 h1 {
@@ -156,10 +159,10 @@ a {
     position: relative;
     top: 4cm;
     text-align: center;
-    width: 144px;
-    height: 23px;
+    width: 244px;
+    height: 30px;
     padding: 15px;
-    left: 18cm;
+    left: 16cm;
     border: var(--border);
     margin-top: 5mm;
     transition: 1s;
@@ -478,6 +481,7 @@ td:hover {
 
 .doomslayerGame {
     width: 200px;
+    
 }
 
 .charSelBox {
@@ -550,9 +554,9 @@ td:hover {
   }
 
 #stats_char1 {
-    text-align: right;
+    text-align: left;
     position: relative;
-    left: 2.5vw;
+
 }
 
 #char1Img {
@@ -589,7 +593,6 @@ td:hover {
 
 .questionmark {
     animation: var(--animation_upAndDown);
-
 }
 
 .swiper {
@@ -669,4 +672,51 @@ td:hover {
 @keyframes blinkRed {
     0%   { filter: none; }
     100% { filter: brightness(2) sepia(1) hue-rotate(-50deg) saturate(5); }
+}
+
+.pjt {
+    position : absolute;
+}
+
+#battleHistoryContainer {
+    background-color: var(--third-color);    
+    opacity: 1;
+    font-family: var(--text-font);
+    color: var(--main-color);
+}
+
+.battle-item {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.characterHud {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    margin-right: 1145px;
+    bottom: 10px;
+    position: relative;
+    padding: 10px;
+}
+
+li {
+    text-align: left;
+    color: black;
+}
+
+ul p {
+    text-align: left;
+    font-size: 15px;
+}
+
+.imgStarpage {
+    z-index: 100;
+    height: 600px;
+    position: relative;
+    right: 300px;
+    top: 2cm;
+}
+
+.redText {
+    color: rgb(213, 139, 0);
 }

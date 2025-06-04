@@ -1,5 +1,3 @@
-const e = require("express");
-
 let characters = [
     {
         "name": "Omni-Man",
@@ -25,7 +23,8 @@ let characters = [
                 "up": `<img src="./img/Omni-Man/attackUp_omniMan.gif" height="280px">`,
                 "side": `<img src="./img/Omni-Man/attackSide_omniMan.gif" height="280px">`,
                 "down": `<img src="./img/Omni-Man/attackDown_omniMan.gif" height="280px">`,
-                "standing": `<img src="./img/Omni-Man/standing_omniMan.gif" height="280px">`
+                "standing": `<img src="./img/Omni-Man/standing_omniMan.gif" height="280px">`,
+                "shockwave": `<img src="./img/Omni-Man/shockwave.gif" height="280px">`
             }
     },
     {
@@ -44,8 +43,13 @@ let characters = [
 
             ],
             "jump": `<img src="./img/Doomslayer/jump.gif" height="280px">`,
-            "standWithWeapon": `<img src="./img/Doomslayer/standingWithWeapon.png" height="280px">`,
+            "standWithWeapon": `<img src="./img/Doomslayer/weapon2.gif" height="280px">`,
             "takingOutWeapon": `<img src="./img/Doomslayer/takingOutWeapon.gif" height="280px">`,
+            "weapon2": `<img src="./img/Doomslayer/weapon2.gif" height="280px">`,
+            "ball": `<img src="./img/Doomslayer/ball.gif" height="50px">`,
+            "explosion": `<img src="./img/Doomslayer/explosion.gif" height="280px">`,
+            "beam": `<img src="./img/Doomslayer/beam.gif" width="80px">`,
+            "stomp": `<img src="./img/Doomslayer/attackdown.gif" height="280px">`,
         }
     },
     {
@@ -113,9 +117,8 @@ let backButtonHome = `
 `;
 let home = `
     <div class="button pixel-borders pixel-borders--2" onclick="printCharacterSelection()">Start</div>
-    <div class="button pixel-borders pixel-borders--2" onclick="printSettings()">Settings</div>
     <div class="button pixel-borders pixel-borders--2" onclick="printAbout()">About</div>
-    <div class="button pixel-borders pixel-borders--2" onclick="printCredits()">Credits</div>
+  
     `;
 let settings = `
 <div id="settingsHeadlines">
@@ -146,34 +149,43 @@ let settings = `
        <p>2x</p>
        <div class="arrowRight"></div>
    </div>
-</div>
-`;
+</div>`;
 let about = `
 <div class="infoBox pixel-borders pixel-borders--2">
         <p>
-            Fiction Battles is a game inspired by games
-            like Super Smash Bros or Mortal Combat. The
-            goal is to fight 1v1 against another person
-            until one runs out of Health Points (HP). The
-            characters planned so far are listed below:
+           Controls for the Characters:
         </p>
 
         <ul>
-            <li>Omni-Man (Invincible)</li>
+            <p>For all Characters</p>
+            <li>A (arrow left): Move left</li>
+            <li>D (arrow right): Move right</li>
+        </ul>
+
+        <ul>
+            <p>Omni-Man (Invincible)</p>
+            <li>G: Punch</p>
             <br>
-            <li>Son Goku (Dragon Ball Z)</li>
+            <li>F + W: Heavy Punch</li>
             <br>
-            <li>Doomslayer (Doom)</li>
+            <li>F + D: Thunderclap</li>
             <br>
-            <li>Darth Vader (Star Wars)</li>
+            <li>W + S: Fly up and down</li>
+        </ul>
+
+        <br>
+
+        <ul>
+            <p>Doomslayer (DOOM)</p>
+            <li>2 : Punch</p>
             <br>
-            <li>Darkseid (DC)</li>
+            <li>3 + arrow up: Cannon</li>
             <br>
-            <li>Kratos (God Of War)</li>
+             <li>1: Shoot Cannon</li>
             <br>
-            <li>Matzgo (2BHITM)</li>
+            <li>3 + arrow down: Thunde</li>
             <br>
-            <li>Clemens (2BHITM)</li>
+            <li>1: Jump</li>
         </ul>
 </div>
 `;
@@ -197,7 +209,7 @@ let p2 = document.getElementById("p2");
 const speed = 5;
 let xP1 = 100;
 let yP1 = 500;
-let xP2 = 600;
+let xP2 = 1200;
 let yP2 = 500;
 const keys = {};
 let lastKey = "s";
@@ -205,9 +217,14 @@ let lastKeyP2 = "arrowdown";
 let comboCounterP1 = 1;
 let comboCounterP2 = 1;
 let gKeyPressed = false;
+let oneKeyPressed = false;
+let twoKeyPressed = false;
 let attackCooldown = false;
 let swiper;
 let isJumpingP2 = false;
+let projectileActive = false;
+let battleStartTime;
+let battleHistory = JSON.parse(localStorage.getItem('battleHistory')) || [];
 
 disableScrolling();
 
@@ -282,6 +299,7 @@ player2.currentHP = player2.maxHP;
 
 function setGameElements() {
     game.style.backgroundImage = "url(./img/maps/map1.jpg)"
+battleStartTime = new Date();
 
     document.addEventListener("keydown", (e) => {
         keys[e.key.toLowerCase()] = true;
@@ -294,50 +312,48 @@ function setGameElements() {
     gameLoop();
 }
 
+
+let heavyGunEquipped = false;
+let fKeyPressed = false;
+let threeKeyPressed = false;
 function gameLoop() {
     if (keys["g"] && !gKeyPressed) {
         gKeyPressed = true;
-
         if (comboCounterP1 === characters[characterPlayer1].attacks.combo.length) {
             comboCounterP1 = 0;
         }
-
-        if (hit(p1, p2)) {
-            playAnimation(
+        playAnimation(
                 characters[characterPlayer1].attacks.standing,
                 characters[characterPlayer1].attacks.combo[comboCounterP1].name,
                 p1,
                 characters[characterPlayer1].attacks.combo[comboCounterP1].duration
             );
-            // Make Omni-Man's combo even stronger
-            if (characterPlayer1 === 0) {
-                dealDamage(2, 100000); // Increased from 20000 to 100000
-            } else {
-                dealDamage(2, 1000);
-            }
+        if (hit(p1, p2)) {
+            dealDamage(2, 5000); 
             showHit(p2);
         }
-
         comboCounterP1++;
+    }
+
+    if (keys["w"] && keys["f"] && !fKeyPressed) {
+        fKeyPressed = true;
+        playAnimation(
+            characters[0].attacks.standing,
+            characters[0].attacks.up,
+            p1,
+            900
+        );
+        if (hit(p1, p2)) {
+            dealDamage(2, 100000); // Set to same damage as the ball
+            showHit(p2);
+        }
     }
 
     if (!keys["g"]) {
         gKeyPressed = false;
     }
 
-    if (keys["w"] && keys["g"]) {
-        if (characterPlayer1 === 0) {
-            hit(p2, p2, 10000);
-            playAnimation(
-            characters[0].attacks.standing,
-            characters[0].attacks.up,
-            p1,
-            900
-        );
-        pushPlayer(2);
-        }
-        
-    }
+    
 
     if (keys["a"]) {
         if (lastKey !== "a") {
@@ -364,10 +380,20 @@ function gameLoop() {
         }
     }
 
+  
+    if (!keys["f"]) {
+        fKeyPressed = false;
+    }
+
+    if (!keys["3"]) {
+        threeKeyPressed = false;
+    }
+
     p1.style.left = xP1 + "px";
     p1.style.top = yP1 + "px";
 
     if (keys["arrowleft"]) {
+        heavyGunEquipped = false;
         if (lastKey !== "arrowleft") {
             p2.style.transform = "scaleX(-1)";
         }
@@ -382,6 +408,7 @@ function gameLoop() {
     }
 
     if (keys["arrowright"]) {
+        heavyGunEquipped = false;
         if (lastKey !== "arrowright") {
             p2.style.transform = "scaleX(1)";
         }
@@ -395,23 +422,26 @@ function gameLoop() {
         if (inBoundsRight(xP2)) xP2 += speed;
     }
 
-    if (keys["2"]) {
-        hit(p1, p2, 1000);
+    if (keys["2"] && !twoKeyPressed) {
+        twoKeyPressed = true;
+        
         playAnimation(
             characters[characterPlayer2].attacks.standing,
             characters[characterPlayer2].attacks.combo[0].name,
             p2,
             500   
         )
-        
+        if (hit(p1, p2)) {
+            dealDamage(1, 5000);
+            showHit(p1);
+        }
     }
 
-    // Doomslayer jump (Player 2, ArrowUp or Numpad 1)
-    if (
-        characterPlayer2 === 1 &&
-        (keys["1"]) &&
-        !isJumpingP2
-    ) {
+    if (!keys["2"]) {
+        twoKeyPressed = false;  
+    }
+
+    if (keys["1"] && !isJumpingP2 && !heavyGunEquipped) {
         isJumpingP2 = true;
         playAnimation(
             characters[1].attacks.standing,
@@ -419,6 +449,7 @@ function gameLoop() {
             p2,
             500
         );
+
         let jumpHeight = 120;
         let jumpSpeed = 8;
         let originalY = yP2;
@@ -443,23 +474,55 @@ function gameLoop() {
         }, 16);
     }
 
-    // Doomslayer special: ArrowUp + 2
-    if (
-        characterPlayer2 === 1 &&
-        keys["arrowup"] &&
-        keys["2"]
-    ) {
+       if (keys["arrowup"] && keys["3"] && !threeKeyPressed) {
+        heavyGunEquipped = true;
+        threeKeyPressed = true;
         playAnimation(
             characters[1].attacks.standWithWeapon,
-            characters[1].attacks.takingOutWeapon,
+            characters[1].attacks.standWithWeapon,
             p2,
-            700
+            300
         );
+    }
+
+    if (keys["3"] && keys["arrowdown"] && !threeKeyPressed) {
+        threeKeyPressed = true;
+            playAnimation(
+                characters[1].attacks.standing,
+                characters[1].attacks.stomp,
+                p2,
+                1000
+            );
+        if (hit(p2, p1)) {
+            dealDamage(1, 10000);
+            showHit(p1);
+        }
+    }
+
+    if (heavyGunEquipped && keys["1"] && !oneKeyPressed && !projectileActive) {
+        oneKeyPressed = true;
+        projectileActive = true;
+        shootProjectile(2, characters[1].attacks.ball, xP2 - 50, yP2 + 50);
+    }
+
+    if ((keys["a"] || keys["d"]) && keys["f"] && !oneKeyPressed && !projectileActive) {
+            playAnimation(
+                characters[0].attacks.standing,
+                characters[0].attacks.side,
+                p1,
+                1000
+            );
+        fKeyPressed = true;
+        projectileActive = true;
+        shootProjectile(1, characters[0].attacks.shockwave, xP1 - 50, yP1 + 50);
+    }
+
+    if (!keys["1"]) {
+        oneKeyPressed = false;
     }
 
     p2.style.left = xP2 + "px";
     p2.style.top = yP2 + "px";
-
     requestAnimationFrame(gameLoop);
 }
 
@@ -498,16 +561,17 @@ function playAnimation(oldGif, newGif, element, duration) {
     }, duration);
 }
 
-function hit(element1, element2, damage) {
-    if (Math.max(element1.offsetLeft, element2.offsetLeft) - Math.min(element1.offsetLeft, element2.offsetLeft) <= 200) {
-        return true
-    }
-    return false;
+function hit(element1, element2, threshold = 200) {
+    const dx = Math.abs(element1.offsetLeft - element2.offsetLeft);
+    const dy = Math.abs(element1.offsetTop - element2.offsetTop);
+    return dx <= threshold && dy <= threshold;
 }
 
 function showHit(element) {
-    console.log("Animation");
-    element.style.animation = "blinkRed 0.1s alternate 3"
+    element.style.animation = "blinkRed 0.2s alternate 1";
+    setTimeout(() => {
+        element.style.animation = "none";
+    }, 400);
 }
 
 function dealDamage(playerRecieving, damage) {
@@ -540,59 +604,49 @@ function isFacingRight(playerElement) {
 }
 
 let projectileIndex = 0;
-function shootProjectile(player, gif, player) {
-    game.innerHTML += `<div id = "projectile${projectileIndex}"><img src="${gif}"></div>`;
-    let newProjectile = document.getElementById(`projectile${projectileIndex}`);
-    newProjectile.style.position = player.style.position;
+let loops = 0;
+function shootProjectile(player, gif, x, y) {
+    console.log("shootProjectile called");
+    let newProjectile = document.createElement("div");
+    newProjectile.className = "pjt";
+    newProjectile.id = `projectile${projectileIndex}`;
+    newProjectile.innerHTML = gif;
+    newProjectile.style.position = "absolute";
+    newProjectile.style.left = x + "px";
+    newProjectile.style.top = y + "px";
+    game.appendChild(newProjectile);
 
-    if (player === 1) {
-        while (newProjectile.offsetLeft < 1300 && newProjectile.offsetLeft > -5 && hit(newProjectile, p2)) {
-            if (isFacingRight(p1)) { 
-                newProjectile.style.left = (newProjectile.offsetLeft + 10) + "px";
-                setTimeout(() => {
-                    if (hit(newProjectile, p2)) {
-                        dealDamage(2, 1000);
-                        showHit(p2);
-                    }
-                }
-                , 1000);
-            } else {
-                newProjectile.style.left = (newProjectile.offsetLeft - 10) + "px";
-                setTimeout(() => {
-                    if (hit(newProjectile, p2)) {
-                        dealDamage(2, 1000);
-                        showHit(p2);
-                    }
-                }
-                , 1000);
-            }
-    }
+    let direction = 1;
+    let target = p2;
+    let damageTarget = 2;
     if (player === 2) {
-        while (newProjectile.offsetLeft > -5 && newProjectile.offsetLeft < 1300 && hit(newProjectile, p1)) {
-            if (isFacingRight(p2)) { 
-                newProjectile.style.left = (newProjectile.offsetLeft + 10) + "px";
-                setTimeout(() => {
-                    if (hit(newProjectile, p1)) {
-                        dealDamage(2, 1000);
-                        showHit(p2);
-                    }
-                }
-                , 1000);
-            } else {
-                newProjectile.style.left = (newProjectile.offsetLeft - 10) + "px";
-                setTimeout(() => {
-                    if (hit(newProjectile, p1)) {
-                        dealDamage(2, 1000);
-                        showHit(p2);
-                    }
-                }
-                , 1000);
-            }
-            }
-        }
-    projectileIndex++;
+        direction = isFacingRight(p2) ? 1 : -1;
+        target = p1;
+        damageTarget = 1;
+    } else {
+        direction = isFacingRight(p1) ? 1 : -1;
     }
+
+    let posX = x;
+    const speed = 20;
+    const interval = setInterval(() => {
+        posX += speed * direction;
+        newProjectile.style.left = posX + "px";
+        if (!inBoundsLeft(posX) || !inBoundsRight(posX) || hit(newProjectile, target)) {
+            clearInterval(interval);
+            if (hit(newProjectile, target)) {
+                dealDamage(damageTarget, 100000);
+                showHit(target);
+            }
+            newProjectile.remove();
+            projectileActive = false;
+        }
+    }, 20);
+
+    projectileIndex++;
 }
+     
+
 
 function chooseCharacter(player) {
     if (player === 1) {
@@ -629,10 +683,8 @@ function chooseCharacter(player) {
             <div class="swiper-button-next"></div>
         </div>
     `;
-
     document.body.innerHTML += charSel1;
     }
-
     if (player === 2) {
         let charSel2 = `
         <div class="swiper">
@@ -667,7 +719,6 @@ function chooseCharacter(player) {
             <div class="swiper-button-next"></div>
         </div>
     `;
-
     document.body.innerHTML += charSel2;
     }
 
@@ -690,12 +741,10 @@ function insertChar(player, character) {
         `<img class="characterImg" src="./img/Darkseid/darkseidCharSel.webp">`,
     ];
 
-    // Prepare stats HTML
     const statsHtml = `
         <span style="font-size: 0.6em;">
-            <strong>Name:</strong> ${characters[character].name}<br>
-            <strong>HP:</strong> ${characters[character].health}<br>
-            <strong>AP:</strong> ${characters[character].AP ?? "-"}
+            <strong class="redText">Name:</strong> ${characters[character].name}<br><br>
+            <strong class="redText">HP:</strong> ${characters[character].health}<br><br>
         </span>
     `;
 
@@ -711,7 +760,6 @@ function insertChar(player, character) {
         document.getElementById("stats_char2").innerHTML = statsHtml;
     }
 
-    // Remove the slider after a character is chosen
     const slider = document.querySelector('.swiper');
     if (slider) {
         slider.remove();
@@ -719,7 +767,23 @@ function insertChar(player, character) {
 }
 
 function showGameOver(winner) {
-    document.body.innerHTML = `
+    const battleEndTime = new Date();
+    const battleDuration = Math.floor((battleEndTime - battleStartTime) / 1000);
+
+     const battleResult = {
+        timestamp: battleEndTime.toISOString(),
+        player1: characters[characterPlayer1].name,
+        player2: characters[characterPlayer2].name,
+        winner: winner,
+        player1Health: player1.currentHP,
+        player2Health: player2.currentHP,
+        duration: battleDuration
+    };
+    
+    battleHistory.push(battleResult);
+    localStorage.setItem('battleHistory', JSON.stringify(battleHistory));
+
+     document.body.innerHTML = `
         <style>
             .gameover-restart-btn {
                 margin-top: 30px;
@@ -737,6 +801,42 @@ function showGameOver(winner) {
                 background: #110E69;
                 color: #FFD700;
             }
+            .history-btn {
+                margin-top: 15px;
+                font-size: 1rem;
+                padding: 8px 20px;
+                font-family: 'PressStart2P';
+                background:  #FFD700;
+                color: #110E69;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background 0.2s, color 0.2s;
+            }
+            .history-btn:hover {
+                background: #110E69;
+                color: #FFD700;
+            }
+            .battle-history {
+                margin-top: 20px;
+                max-height: 200px;
+                overflow-y: auto;
+                background: rgba(0,0,0,0.7);
+                padding: 10px;
+                border-radius: 5px;
+                color: white;
+                width: 80%;
+                max-width: 600px;
+            }
+            .battle-item {
+                margin: 5px 0;
+                padding: 5px;
+                border-bottom: 1px solid #444;
+            }
+            .duration {
+                color: #FFA500;
+                font-weight: bold;
+            }
         </style>
         <div style="
             display: flex; 
@@ -744,13 +844,52 @@ function showGameOver(winner) {
             align-items: center; 
             justify-content: center; 
             height: 100vh; 
-            background: url('img/background_charSel.gif') center center / cover no-repeat;
-        ">
-            <h1 style="color: #FFD700; font-size: 4rem; font-family: 'PressStart2P';">Game Over</h1>
+            background: url('img/background_charSel.gif') center center / cover no-repeat;">
+
             <h2 style="color: white; font-size: 2rem; text-shadow: 1px 1px 6px black; font-family: 'PressStart2P';">${winner} wins!</h2>
+            <p style="color: #FFD700; font-family: 'PressStart2P';">Battle lasted: <span class="duration">${formatDuration(battleDuration)}</span></p>
             <button class="gameover-restart-btn" onclick="location.reload()">Restart</button>
+            <button class="history-btn" onclick="showBattleHistory()">Show Battle History</button>
+            <div id="battleHistoryContainer" class="battle-history" style="display: none;"></div>
         </div>
     `;
+}
+
+
+function showBattleHistory() {
+    const container = document.getElementById('battleHistoryContainer');
+    if (container.style.display === 'none') {
+        container.style.display = 'block';
+        container.innerHTML = '<h3>Battle History</h3>';
+        
+        if (battleHistory.length === 0) {
+            container.innerHTML += '<p>No battles recorded yet</p>';
+            return;
+        }
+        
+        battleHistory.forEach((battle, index) => {
+            const date = new Date(battle.timestamp).toLocaleString();
+            const item = document.createElement('div');
+            item.className = 'battle-item';
+            item.innerHTML = `
+                <strong>Battle #${index + 1}</strong> (${date})<br><br>
+                ${battle.player1} vs ${battle.player2}<br><br>
+                Winner: <strong style="color: #FFD700">${battle.winner}</strong><br><br>
+                Duration: <span class="duration">${formatDuration(battle.duration)}</span><br><br>
+                ${battle.player1} HP: ${battle.player1Health.toLocaleString()}<br><br>
+                ${battle.player2} HP: ${battle.player2Health.toLocaleString()}
+            `;
+            container.appendChild(item);
+        });
+    } else {
+        container.style.display = 'none';
+    }
+}
+
+function formatDuration(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}m ${secs}s`;
 }
 
 window.chooseCharacter = chooseCharacter;
